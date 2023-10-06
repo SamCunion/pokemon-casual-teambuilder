@@ -1,0 +1,189 @@
+{
+    "games": [
+        {
+            "id": "41",
+            "name": "Pokémon Violet",
+            "img": "violet.jpg"
+        },
+        {
+            "id": "40",
+            "name": "Pokémon Scarlet",
+            "img": "scarlet.jpg"
+        },
+        {
+            "id": "39",
+            "name": "Pokémon Legends Arceus",
+            "img": "legends-arceus.jpg"
+        },
+        {
+            "id": "38",
+            "name": "Pokémon Shining Pearl",
+            "img": "shining-pearl.jpg"
+        },
+        {
+            "id": "37",
+            "name": "Pokémon Brilliant Diamond",
+            "img": "brilliant-diamond.jpg"
+        },
+        {
+            "id": "34",
+            "name": "Pokémon Shield",
+            "img": "shield.jpg"
+        },
+        {
+            "id": "33",
+            "name": "Pokémon Sword",
+            "img": "sword.jpg"
+        },
+        {
+            "id": "32",
+            "name": "Pokémon Let's Go, Eevee!",
+            "img": "lets-go-eevee.jpg"
+        },
+        {
+            "id": "31",
+            "name": "Pokémon Let's Go, Pikachu!",
+            "img": "lets-go-pikachu.jpg"
+        },
+        {
+            "id": "30",
+            "name": "Pokémon Ultra Moon",
+            "img": "ultra-moon.jpg"
+        },
+        {
+            "id": "29",
+            "name": "Pokémon Ultra Sun",
+            "img": "ultra-sun.jpg"
+        },
+        {
+            "id": "28",
+            "name": "Pokémon Moon",
+            "img": "moon.jpg"
+        },
+        {
+            "id": "27",
+            "name": "Pokémon Sun",
+            "img": "sun.jpg"
+        },
+        {
+            "id": "26",
+            "name": "Pokémon Alpha Sapphire",
+            "img": "alpha-sapphire.jpg"
+        },
+        {
+            "id": "25",
+            "name": "Pokémon Omega Ruby",
+            "img": "omega-ruby.jpg"
+        },
+        {
+            "id": "24",
+            "name": "Pokémon Y",
+            "img": "y.jpg"
+        },
+        {
+            "id": "23",
+            "name": "Pokémon X",
+            "img": "x.jpg"
+        },
+        {
+            "id": "22",
+            "name": "Pokémon White 2",
+            "img": "white-2.jpg"
+        },
+        {
+            "id": "21",
+            "name": "Pokémon Black 2",
+            "img": "black-2.jpg"
+        },
+        {
+            "id": "18",
+            "name": "Pokémon White",
+            "img": "white.jpg"
+        },
+        {
+            "id": "17",
+            "name": "Pokémon Black",
+            "img": "black.jpg"
+        },
+        {
+            "id": "16",
+            "name": "Pokémon Soul Silver",
+            "img": "soul-silver.jpg"
+        },
+        {
+            "id": "15",
+            "name": "Pokémon Heart Gold",
+            "img": "heart-gold.jpg"
+        },
+        {
+            "id": "14",
+            "name": "Pokémon Platinum",
+            "img": "platinum.jpg"
+        },
+        {
+            "id": "13",
+            "name": "Pokémon Pearl",
+            "img": "pearl.jpg"
+        },
+        {
+            "id": "12",
+            "name": "Pokémon Diamond",
+            "img": "diamond.jpg"
+        },
+        {
+            "id": "11",
+            "name": "Pokémon Leaf Green",
+            "img": "leaf-green.jpg"
+        },
+        {
+            "id": "10",
+            "name": "Pokémon Fire Red",
+            "img": "fire-red.jpg"
+        },
+        {
+            "id": "9",
+            "name": "Pokémon Emerald",
+            "img": "emerald.jpg"
+        },
+        {
+            "id": "8",
+            "name": "Pokémon Sapphire",
+            "img": "sapphire.jpg"
+        },
+        {
+            "id": "7",
+            "name": "Pokémon Ruby",
+            "img": "ruby.jpg"
+        },
+        {
+            "id": "6",
+            "name": "Pokémon Crystal",
+            "img": "crystal.jpg"
+        },
+        {
+            "id": "5",
+            "name": "Pokémon Silver",
+            "img": "silver.jpg"
+        },
+        {
+            "id": "4",
+            "name": "Pokémon Gold",
+            "img": "gold.jpg"
+        },
+        {
+            "id": "3",
+            "name": "Pokémon Yellow",
+            "img": "yellow.jpg"
+        },
+        {
+            "id": "2",
+            "name": "Pokémon Blue",
+            "img": "blue.jpg"
+        },
+        {
+            "id": "1",
+            "name": "Pokémon Red",
+            "img": "red.jpg"
+        }
+    ]
+}
