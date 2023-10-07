@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Casual Pokémon Teambuilder</title>
+        <link rel="stylesheet" type="text/css" href="public/css/app.css" />
+    </head>
+    <body>
+        <div id="page-game-select" class="page">
+            <div id="GameSelector">
+                <h1 class="text-center mt-4">Casual Pokémon Teambuilder</h1>
+                <input type="text" placeholder="Filter Games..." class="form-comtrol mx-auto mt-5" id="game-search" />
+                <div id="game-list" class="d-flex flex-wrap"></div>
+            </div>
+        </div>
+        <div id="page-app" class="page">
+            <h1>App Page</h1>
+        </div>
+        <footer id="credits-bar" class="bg-primary bg-gradient border-top border-4 border-primary">
+            <div id="name-credit">
+                <p class="ps-3 pt-2 text-light float-start">&copy; Sam Cunion 2023</p>
+            </div>
+            <div id="credit-expand-button" class="float-end h-100 me-3">
+                <p class="text-light pt-2 float-start">Credits:</p>
+                <button class="btn btn-outline-light float-end ms-3 top-50" id="expand-credits">...</button>
+            </div>
+        </footer>
+        <div id="info-overlay">
+            <div id="info-overlay-content">
+                <button id="info-overlay-close">Close</button>
+            </div>
+        </div>
+        <script type="text/javascript" src="/public/js/app.bundle.js"></script>
+    </body>
+</html>

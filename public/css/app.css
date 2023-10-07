@@ -1,4 +1,4 @@
-#page {
+body {
     margin: 0;
     left: 0;
     top: 0;
@@ -26,6 +26,10 @@
     margin-left: 5vw;
     margin-top: 2vh;
     border: 3px solid black;
+    background-color: white;
+}
+.game-option:hover {
+    background-color: lightgrey;
 }
 .game-option img {
     height: 80%;
@@ -37,7 +41,6 @@
     margin-top: auto;
     height: 5vh;
     width: 100%;
-    background-color: pink;
 }
 
 #info-overlay {
