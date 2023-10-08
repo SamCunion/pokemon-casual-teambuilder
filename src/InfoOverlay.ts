@@ -2,14 +2,15 @@
 export default class InfoOverlay {
     private static elem: HTMLElement;
     private static content: string = "";
+    private static exit_button;
 
     public static Init() {
-        InfoOverlay.elem = $("#info-overlay")[0];
-        $(InfoOverlay.elem).hide();
-        
-        document.getElementById("info-overlay-close").addEventListener("click", () => {
+        InfoOverlay.exit_button = $('<button id="info-overlay-close">Close</button>');
+        $(InfoOverlay.exit_button).on("click", () => {
             InfoOverlay.Hide();
         })
+        InfoOverlay.elem = $("#info-overlay")[0];
+        $(InfoOverlay.elem).hide();
 
         InfoOverlay.elem.addEventListener("click", () => {
             InfoOverlay.Hide();
@@ -29,5 +30,6 @@ export default class InfoOverlay {
     public static setContent(content: string): void {
         InfoOverlay.content = content;
         document.getElementById("info-overlay-content").innerHTML = content;
+        $("#info-overlay-content").append(InfoOverlay.exit_button);
     }
 }

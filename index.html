@@ -1,34 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Casual Pokémon Teambuilder</title>
-        <link rel="stylesheet" type="text/css" href="public/css/app.css" />
-    </head>
-    <body>
-        <div id="page-game-select" class="page">
-            <div id="GameSelector">
-                <h1 class="text-center mt-4">Casual Pokémon Teambuilder</h1>
-                <input type="text" placeholder="Filter Games..." class="form-comtrol mx-auto mt-5" id="game-search" />
-                <div id="game-list" class="d-flex flex-wrap"></div>
+
+<head>
+    <title>Casual Pokémon Teambuilder</title>
+    <link rel="stylesheet" type="text/css" href="public/css/app.css" />
+</head>
+
+<body>
+    <div id="page-game-select" class="page">
+        <div id="GameSelector">
+            <h1 class="text-center mt-4">Casual Pokémon Teambuilder</h1>
+            <input type="text" placeholder="Filter Games..." class="form-comtrol mx-auto mt-5" id="game-search" />
+            <div id="game-list" class="d-flex flex-wrap"></div>
+        </div>
+    </div>
+    <div id="page-app" class="page">
+        <div id="app">
+            <div id="team-display-container">
+                <div class="pokemon-display-container d-flex align-items-center">
+                    <div class="pokemon-sprite-container">
+                        <img class="pokeball-sprite ms-3" src="public/img/sprite/ball.png" />
+                    </div>
+                    <div class="route-select-button">
+                        <img class="route-select-sprite" src="public/img/sprite/expand.png" />
+                    </div>
+                </div>
+                <div class="pokemon-display-container d-flex align-items-center">
+                    <div class="pokemon-sprite-container">
+                        <img class="pokeball-sprite ms-3" src="public/img/sprite/ball.png" />
+                    </div>
+                    <div class="route-select-button">
+                        <img class="route-select-sprite" src="public/img/sprite/expand.png" />
+                    </div>
+                </div>
+                <div class="pokemon-display-container d-flex align-items-center">
+                    <div class="pokemon-sprite-container">
+                        <img class="pokeball-sprite ms-3" src="public/img/sprite/ball.png" />
+                    </div>
+                    <div class="route-select-button">
+                        <img class="route-select-sprite" src="public/img/sprite/expand.png" />
+                    </div>
+                </div>
+                <div class="pokemon-display-container d-flex align-items-center">
+                    <div class="pokemon-sprite-container">
+                        <img class="pokeball-sprite ms-3" src="public/img/sprite/ball.png" />
+                    </div>
+                    <div class="route-select-button">
+                        <img class="route-select-sprite" src="public/img/sprite/expand.png" />
+                    </div>
+                </div>
+                <div class="pokemon-display-container d-flex align-items-center">
+                    <div class="pokemon-sprite-container">
+                        <img class="pokeball-sprite ms-3" src="public/img/sprite/ball.png" />
+                    </div>
+                    <div class="route-select-button">
+                        <img class="route-select-sprite" src="public/img/sprite/expand.png" />
+                    </div>
+                </div>
+                <div class="pokemon-display-container d-flex align-items-center">
+                    <div class="pokemon-sprite-container">
+                        <img class="pokeball-sprite ms-3" src="public/img/sprite/ball.png" />
+                    </div>
+                    <div class="route-select-button">
+                        <img class="route-select-sprite" src="public/img/sprite/expand.png" />
+                    </div>
+                </div>
+            </div>
+            <div id="main-content-container">
+                <div id="header-container" class="d-flex justify-content-around align-items-center">
+                    <div id="back-button" class="app-styled-button"><img src="public/img/sprite/back.png" /></div>
+                    <input type="text" placeholder="Search Pokémon..." id="pokemon-search" />
+                    <h1>Casual Pokémon Teambuilder</h1>
+                    <button id="generate-infographic-button"
+                        class="app-styled-button">Generate<br />Infographic</button>
+                </div>
+                <div id="pokemon-view">
+
+                </div>
+                <div id="options-container" class="text-center">
+                    <h3 class="mt-5">Legendaries</h2>
+                        <div id="legendary-options" class="form-check form-switch justify-content-around d-flex p-0">
+                            <label for="legendary-switch">Enable Legendaries</label>
+                            <input class="form-check-input" type="checkbox" role="switch" id="legendary-switch" />
+                        </div>
+                        <h3 class="mt-5">Mythics</h2>
+                            <div id="mythic-options" class="form-check form-switch justify-content-around d-flex p-0">
+                                <label for="mythics-switch">Enable Mythics</label>
+                                <input class="form-check-input" type="checkbox" role="switch" id="mythics-switch" />
+                            </div>
+                            <h3 class="mt-5">Randomise</h2>
+                                <div id="randomise-options"
+                                    class="form-check form-switch justify-content-around d-flex p-0">
+                                    <label for="random-switch">Randomise - Empty/All</label>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="random-switch" />
+                                </div>
+                                <br />
+                                <button class="app-styled-button">Randomise</button>
+                                <h3 class="mt-5">Pokémon Suggestion</h2>
+                                    <div id="suggest-options"
+                                        class="form-check form-switch justify-content-around d-flex flex-wrap p-0">
+                                        <label for="suggest-switch">Suggest One/Empty</label>
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="suggest-switch" />
+                                    </div>
+                                    <br />
+                                    <button class="app-styled-button">Suggest Pokemon</button>
+                </div>
+                <div id="typechart-container" class="d-flex justify-content-around align-items-center">
+                    <table class="typechart-table">
+                        <thead>
+                            <td>Type</td>
+                            <td>Offence</td>
+                            <td>Defence</td>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Normal</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="typechart-table">
+                        <thead>
+                            <td>Type</td>
+                            <td>Offence</td>
+                            <td>Defence</td>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Normal</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <h3>Overall:</h3>
+                        <h1 id="typechart-result">Okay</h1>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="page-app" class="page">
-            <h1>App Page</h1>
+    </div>
+    <footer id="credits-bar" class="bg-primary bg-gradient border-top border-4 border-primary">
+        <div id="name-credit">
+            <p class="ps-3 pt-2 text-light float-start">&copy; Sam Cunion 2023</p>
         </div>
-        <footer id="credits-bar" class="bg-primary bg-gradient border-top border-4 border-primary">
-            <div id="name-credit">
-                <p class="ps-3 pt-2 text-light float-start">&copy; Sam Cunion 2023</p>
-            </div>
-            <div id="credit-expand-button" class="float-end h-100 me-3">
-                <p class="text-light pt-2 float-start">Credits:</p>
-                <button class="btn btn-outline-light float-end ms-3 top-50" id="expand-credits">...</button>
-            </div>
-        </footer>
-        <div id="info-overlay">
-            <div id="info-overlay-content">
-                <button id="info-overlay-close">Close</button>
-            </div>
+        <div id="credit-expand-button" class="float-end h-100 me-3">
+            <p class="text-light pt-2 float-start">Credits:</p>
+            <button class="btn btn-outline-light float-end ms-3 top-50" id="expand-credits">...</button>
         </div>
-        <script type="text/javascript" src="/public/js/app.bundle.js"></script>
-    </body>
+    </footer>
+    <div id="info-overlay">
+        <div id="info-overlay-content"></div>
+    </div>
+    <script type="text/javascript" src="/public/js/app.bundle.js"></script>
+</body>
+
 </html>

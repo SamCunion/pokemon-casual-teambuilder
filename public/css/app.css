@@ -8,6 +8,13 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: white;
+}
+img, label {
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 #game-search {
     display: block;
@@ -62,11 +69,94 @@ body {
     position: absolute;
     border-radius: 20px;
 }
-@keyframes fadeInAnimation {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+
+#page-app {
+    display: none;
+}
+#app {
+    height: 95vh;
+}
+#team-display-container {
+    height: 100%;
+    width: 10vw;
+    float: left;
+    border-right: 3px solid black;
+}
+#main-content-container {
+    height: 100%;
+    width: 90vw;
+    float: right;
+}
+.pokemon-display-container {
+    height: 16.66666%;
+    width: 100%;
+}
+.pokemon-sprite-container {
+    height: 100%;
+    z-index: 1;
+    cursor: pointer;
+}
+.pokeball-sprite {
+    height: 100%;
+    display: block;
+}
+.route-select-button {
+    margin-left: -0.3rem;
+    z-index: 0;
+    cursor: pointer;
+}
+
+.app-styled-button {
+    background-color: white;
+    border: .4em ridge rgb(102, 102, 255);
+    cursor: pointer;
+}
+.app-styled-button img {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+#header-container {
+    height: 10%;
+    border-bottom: 3px solid black;
+}
+#back-button {
+    height: 5em;
+}
+#pokemon-search {
+    width: 25%;
+    font-size: 2em;
+}
+
+#pokemon-view {
+    width: 100%;
+    float: left;
+    height: 60%;
+    width: 85%
+}
+#options-container {
+    float: right;
+    height: 90%;
+    width: 15%;
+    border-left: 3px solid black;
+}
+#typechart-container {
+    height: 30%;
+    width: 85%;
+    float: left;
+    border-top: 3px solid black;
+}
+#typechart-result {
+    border: 1px solid black;
+    text-align: center;
+}
+.typechart-table {
+    overflow: scroll;
+}
+.typechart-table thead {
+    border-bottom: 1px solid black;
+}
+.typechart-table tbody tr {
+    border-bottom: 1px solid black;
 }

@@ -1,6 +1,5 @@
 import App from "./App";
 import games from "./lib/games.json"
-import "jquery";
 
 export default class GameSelector {
     public static hasInitiated: boolean = false;
