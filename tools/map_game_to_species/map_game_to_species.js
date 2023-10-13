@@ -42,7 +42,9 @@ for (let i = 0; i < pokemon_dex_numbers.length; i++) {
                 if (!out[version]) {
                     out[version] = [];
                 }
-                out[version].push(entry.species_id);
+                if (!out[version].includes(entry.species_id)) {
+                    out[version].push(entry.species_id);
+                }
             }
         }
     }

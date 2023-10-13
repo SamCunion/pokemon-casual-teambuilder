@@ -1,13 +1,16 @@
 import Html from "./Html";
 import InfoOverlay from "./InfoOverlay";
 
+import version_pokemon from "./lib/version_pokemon.json";
+import pokemon from "./lib/pokemon.json";
+import GameSelector from "./GameSelector";
+
 export default class App {
 
     public static hasInitiated: boolean = false;
+    public static current_version = null;
 
-    public static Init(game_obj) {
-        $("#page-app").show();
-        console.log(game_obj);
+    public static Init() {
 
         /**
          * Generate infographic button
@@ -17,6 +20,63 @@ export default class App {
             InfoOverlay.Show();
         })
 
+        /**
+         * Back button functionality
+         */
+        $("#back-button").on("click", e => {
+            App.BackToSelect();
+        })
+
         App.hasInitiated = true;
+
+    }
+
+    public static Show(version) {
+        this.current_version = version;
+        window.location.hash = "#app"
+        App.ListPokemon();
+    }
+
+    private static ListPokemon() {
+        let pokemon_ids_from_game = version_pokemon[App.current_version.id];
+        if (App.current_version["use-dex"]) {
+            pokemon_ids_from_game = version_pokemon[App.current_version["use-dex"]];
+        }
+
+        for (let i = 0; i < pokemon_ids_from_game.length; i++) {
+            let pokemon_obj = pokemon[pokemon_ids_from_game[i]];
+            if (pokemon_obj) {
+                let suffix = "";
+                if (App.current_version.forms) {
+                    if (App.current_version.forms.includes(pokemon_obj.name)) {
+                        suffix = `-${App.current_version.form}`;
+                    }
+                }
+                let div = $(`<div class="pokemon-thumb-container d-flex"></div>`);
+                let img = $(`<img src="/public/img/pokemon-sprites/gifs/${pokemon_obj.name + suffix}.gif" />`);
+
+                let imgW = (img[0] as HTMLImageElement).naturalWidth;
+                let imgH = (img[0] as HTMLImageElement).naturalHeight;
+                let imgR = imgH / imgW;
+
+                if (1 < imgR) {
+                    img.css({"height": "100%", "width": "initial"});
+                }
+                else if (i > imgR) {
+                    img.css({"height": "initial", "width": "100%"});
+                }
+                else {
+                    img.css({"height": "100%", "width": "100%"});
+                }
+
+                div.append(img);
+                $("#pokemon-view").append(div);
+            }
+        }
+    }
+
+    public static BackToSelect() {
+        window.location.hash = "#select";
+        $(".pokemon-thumb-container").remove();
     }
 }

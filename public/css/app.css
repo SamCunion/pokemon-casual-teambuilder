@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 body {
     margin: 0;
     left: 0;
@@ -59,6 +62,7 @@ img, label {
     width: 100%;
     height: 100%;
     animation: fadeInAnimation .3s;
+    display: none;
 }
 #info-overlay-content {
     background-color: white;
@@ -69,8 +73,13 @@ img, label {
     position: absolute;
     border-radius: 20px;
 }
-
+.no-scrollbar::-webkit-scrollbar {
+    display: initial;
+}
 #page-app {
+    display: none;
+}
+#page-app::-webkit-scrollbar {
     display: none;
 }
 #app {
@@ -133,12 +142,13 @@ img, label {
     width: 100%;
     float: left;
     height: 60%;
-    width: 85%
+    width: 76.5vw;
+    overflow-y: scroll;
 }
 #options-container {
     float: right;
     height: 90%;
-    width: 15%;
+    width: 13.5vw;
     border-left: 3px solid black;
 }
 #typechart-container {
@@ -159,4 +169,14 @@ img, label {
 }
 .typechart-table tbody tr {
     border-bottom: 1px solid black;
+}
+
+.pokemon-thumb-container {
+    width: 10%;
+    border: 1px solid black;
+    cursor: pointer;
+    aspect-ratio: 1/1;
+}
+.pokemon-thumb-container img {
+    margin: auto auto;
 }

@@ -7,14 +7,12 @@ export default class GameSelector {
     private static game_elements: HTMLElement[] = [];
 
     public static Init(): void {
-        
         //generate list of games
         GameSelector.games = games.games;
         games.games.forEach(g => {
             let elem = $(`<div class="game-option" data-gamename="${g.name}"><img src="public/img/game-art/${g.img}" class="mx-auto" /></div>`);
             $(elem).on("click", e => {
-                $("#page-game-select").hide();
-                App.Init(g);
+                App.Show(g);
             })
             $("#game-list").append(elem);
             GameSelector.game_elements.push(elem[0]);
@@ -33,5 +31,9 @@ export default class GameSelector {
         })
 
         GameSelector.hasInitiated = true;
+    }
+
+    public static Show() {
+        window.location.hash = "select";
     }
 }

@@ -3,37 +3,47 @@
         {
             "id": "41",
             "name": "Pokémon Violet",
-            "img": "violet.jpg"
+            "img": "violet.jpg",
+            "form": "paldea"
         },
         {
             "id": "40",
             "name": "Pokémon Scarlet",
-            "img": "scarlet.jpg"
+            "img": "scarlet.jpg",
+            "form": "paldea"
         },
         {
             "id": "39",
             "name": "Pokémon Legends Arceus",
-            "img": "legends-arceus.jpg"
+            "img": "legends-arceus.jpg",
+            "form": "hisui",
+            "forms": ["arcanine", "avalugg", "braviary", "decidueye", "electrode", "goodra", "lilligant", "qwilfish", "samurott", "typhlosion", "zoroark"]
         },
         {
             "id": "38",
             "name": "Pokémon Shining Pearl",
-            "img": "shining-pearl.jpg"
+            "img": "shining-pearl.jpg",
+            "use-dex": "13"
         },
         {
             "id": "37",
             "name": "Pokémon Brilliant Diamond",
-            "img": "brilliant-diamond.jpg"
+            "img": "brilliant-diamond.jpg",
+            "use-dex": "12"
         },
         {
             "id": "34",
             "name": "Pokémon Shield",
-            "img": "shield.jpg"
+            "img": "shield.jpg",
+            "form": "galar",
+            "forms": ["articuno", "moltres", "slowbro", "slowking", "weezing", "zapdos", "darmanitan" ,"farfetch'd", "linoone", "rapidash", "stunfisk"]
         },
         {
             "id": "33",
             "name": "Pokémon Sword",
-            "img": "sword.jpg"
+            "img": "sword.jpg",
+            "form": "galar",
+            "forms": ["articuno", "moltres", "slowbro", "slowking", "weezing", "zapdos", "darmanitan" ,"farfetch'd", "linoone", "rapidash", "stunfisk"]
         },
         {
             "id": "32",
@@ -48,22 +58,30 @@
         {
             "id": "30",
             "name": "Pokémon Ultra Moon",
-            "img": "ultra-moon.jpg"
+            "img": "ultra-moon.jpg",
+            "form": "alola",
+            "forms": ["dugtrio", "golem", "muk", "ninetales", "persian", "raichu", "sandslash", "exeggutor", "marowak", "raticate"]
         },
         {
             "id": "29",
             "name": "Pokémon Ultra Sun",
-            "img": "ultra-sun.jpg"
+            "img": "ultra-sun.jpg",
+            "form": "alola",
+            "forms": ["dugtrio", "golem", "muk", "ninetales", "persian", "raichu", "sandslash", "exeggutor", "marowak", "raticate"]
         },
         {
             "id": "28",
             "name": "Pokémon Moon",
-            "img": "moon.jpg"
+            "img": "moon.jpg",
+            "form": "alola",
+            "forms": ["dugtrio", "golem", "muk", "ninetales", "persian", "raichu", "sandslash", "exeggutor", "marowak", "raticate"]
         },
         {
             "id": "27",
             "name": "Pokémon Sun",
-            "img": "sun.jpg"
+            "img": "sun.jpg",
+            "form": "alola",
+            "forms": ["dugtrio", "golem", "muk", "ninetales", "persian", "raichu", "sandslash", "exeggutor", "marowak", "raticate"]
         },
         {
             "id": "26",

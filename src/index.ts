@@ -8,17 +8,33 @@ import App from "./App";
 class Index {
 
     public static Main(): void {
-        //GameSelector.Init(); TODO: REMOVE - TESTING PURPOSE
-        $("#page-game-select").hide();
-        App.Init({});
-        //TODO: UNTIL HERE
-
+        GameSelector.Init();
         InfoOverlay.Init();
+        App.Init();
 
         document.getElementById("expand-credits").addEventListener("click", () => {
             InfoOverlay.setContent(Html.credits);
             InfoOverlay.Show();
         })
+
+        window.addEventListener("hashchange", e => {
+            if ((e.newURL.includes("#app") || e.newURL.includes("#select"))) {
+                if (e.newURL.includes("#select")) {
+                    App.BackToSelect();
+                    $("#page-game-select").show();
+                    $("#page-app").hide();
+                    $(document.body).removeClass("no-scrollbar");
+                }
+                else {
+                    App.Show(App.current_version);
+                    $("#page-app").show();
+                    $("#page-game-select").hide();
+                    $(document.body).addClass("no-scrollbar");
+                }
+            }
+        })
+
+        GameSelector.Show();
     }
 }
 
