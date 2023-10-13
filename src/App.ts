@@ -4,11 +4,13 @@ import InfoOverlay from "./InfoOverlay";
 import version_pokemon from "./lib/version_pokemon.json";
 import pokemon from "./lib/pokemon.json";
 import GameSelector from "./GameSelector";
+import Team from "./Team";
 
 export default class App {
 
     public static hasInitiated: boolean = false;
     public static current_version = null;
+    public static team: Team;
 
     public static Init() {
 
@@ -28,11 +30,15 @@ export default class App {
         })
 
         App.hasInitiated = true;
-
+        App.team = new Team();
     }
 
     public static Show(version) {
-        this.current_version = version;
+        console.log("Loading game:", version);
+        if (version !== this.current_version) {
+            this.current_version = version;
+            this.team = new Team();
+        }
         window.location.hash = "#app"
         App.ListPokemon();
     }
@@ -52,7 +58,7 @@ export default class App {
                         suffix = `-${App.current_version.form}`;
                     }
                 }
-                let div = $(`<div class="pokemon-thumb-container d-flex"></div>`);
+                let div = $(`<div class="pokemon-thumb-container d-flex" data-pkmn_id=${pokemon_obj.id}></div>`);
                 let img = $(`<img src="/public/img/pokemon-sprites/gifs/${pokemon_obj.name + suffix}.gif" />`);
 
                 let imgW = (img[0] as HTMLImageElement).naturalWidth;
@@ -73,6 +79,15 @@ export default class App {
                 $("#pokemon-view").append(div);
             }
         }
+
+        $(".pokemon-thumb-container").on("click", e => {
+            if (App.team.Add(pokemon[e.currentTarget.dataset.pkmn_id])) {
+                console.log(`Pokemon added to team:`, pokemon[e.currentTarget.dataset.pkmn_id]);
+            }
+            else {
+                console.log("Pokemon cannot be added to team, as it is full");
+            }
+        })
     }
 
     public static BackToSelect() {

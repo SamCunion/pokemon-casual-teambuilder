@@ -12,7 +12,8 @@ export default class GameSelector {
         games.games.forEach(g => {
             let elem = $(`<div class="game-option" data-gamename="${g.name}"><img src="public/img/game-art/${g.img}" class="mx-auto" /></div>`);
             $(elem).on("click", e => {
-                App.Show(g);
+                App.current_version = g;
+                window.location.hash = "#app"
             })
             $("#game-list").append(elem);
             GameSelector.game_elements.push(elem[0]);
