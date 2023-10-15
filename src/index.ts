@@ -26,7 +26,7 @@ class Index {
                     $(document.body).removeClass("no-scrollbar");
                 }
                 else {
-                    App.Show(App.current_version);
+                    App.Show(GameSelector.game_selected);
                     $("#page-app").show();
                     $("#page-game-select").hide();
                     $(document.body).addClass("no-scrollbar");

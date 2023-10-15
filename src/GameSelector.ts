@@ -3,16 +3,14 @@ import games from "./lib/games.json"
 
 export default class GameSelector {
     public static hasInitiated: boolean = false;
-    private static games = [];
     private static game_elements: HTMLElement[] = [];
+    public static game_selected;
 
     public static Init(): void {
-        //generate list of games
-        GameSelector.games = games.games;
         games.games.forEach(g => {
             let elem = $(`<div class="game-option" data-gamename="${g.name}"><img src="public/img/game-art/${g.img}" class="mx-auto" /></div>`);
             $(elem).on("click", e => {
-                App.current_version = g;
+                GameSelector.game_selected = g;
                 window.location.hash = "#app"
             })
             $("#game-list").append(elem);

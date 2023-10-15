@@ -1,3 +1,4 @@
+import App from "./App";
 
 export default class Team {
     private pokemon = [undefined, undefined, undefined, undefined, undefined, undefined];
@@ -45,6 +46,9 @@ export default class Team {
                 })
                 elem.appendTo(`#team-${i+1}`);
             }
+        }
+        if (App.coverage) {
+            App.coverage.Update();
         }
     }
 }

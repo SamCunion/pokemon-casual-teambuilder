@@ -186,6 +186,9 @@ console.log("Combined Locations");
 species_keys = Object.keys(species);
 for (let i = 0; i < species_keys.length; i++) {
     let entry = species[species_keys[i]];
+    if (entry.name.includes("typhlosion")) {
+        console.log(entry);
+    }
     if (!entry.isFinal) {
         delete species[species_keys[i]];
     }

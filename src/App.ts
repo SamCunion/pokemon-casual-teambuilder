@@ -5,12 +5,14 @@ import version_pokemon from "./lib/version_pokemon.json";
 import pokemon from "./lib/pokemon.json";
 import GameSelector from "./GameSelector";
 import Team from "./Team";
+import Coverage from "./Coverage";
 
 export default class App {
 
     public static hasInitiated: boolean = false;
     public static current_version = null;
     public static team: Team;
+    public static coverage: Coverage;
 
     public static Init() {
 
@@ -39,6 +41,7 @@ export default class App {
             this.current_version = version;
             this.team = new Team();
         }
+        App.coverage = new Coverage();
         window.location.hash = "#app"
         App.ListPokemon();
     }

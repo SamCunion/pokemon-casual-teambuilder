@@ -168,13 +168,33 @@ img, label {
     text-align: center;
 }
 .typechart-table {
-    overflow: scroll;
+    height: 100%;
+    text-align: center;
 }
 .typechart-table thead {
     border-bottom: 1px solid black;
 }
+.typechart-table thead td {
+    width: 3vw;
+}
 .typechart-table tbody tr {
     border-bottom: 1px solid black;
+    height: 0.1vh
+}
+.type-sprite {
+    height: 2.5vh;
+    display: block;
+}
+.type-indicator {
+    height: 2.5vh;
+    width: 2.5vh;
+    display: block;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 100%;
+}
+.type-indicator-container {
+    height: 100%;
 }
 
 .pokemon-thumb-container {
