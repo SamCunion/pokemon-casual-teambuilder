@@ -55,32 +55,35 @@ export default class App {
         for (let i = 0; i < pokemon_ids_from_game.length; i++) {
             let pokemon_obj = pokemon[pokemon_ids_from_game[i]];
             if (pokemon_obj) {
-                let suffix = "";
-                if (App.current_version.forms) {
-                    if (App.current_version.forms.includes(pokemon_obj.name)) {
-                        suffix = `-${App.current_version.form}`;
+                if (App.current_version.form && pokemon_obj.forms) {
+                    for (let j = 0; j < pokemon_obj.forms.length; j++) {
+                        if (pokemon[pokemon_obj.forms[j]].name.includes(App.current_version.form)) {
+                            pokemon_obj = pokemon[pokemon_obj.forms[j]];
+                            break;
+                        }
                     }
                 }
                 let div = $(`<div class="pokemon-thumb-container d-flex" data-pkmn_id=${pokemon_obj.id}></div>`);
-                let img = $(`<img src="/public/img/pokemon-sprites/gifs/${pokemon_obj.name + suffix}.gif" />`);
+                let img = $(`<img src="/public/img/pokemon-sprites/gifs/${pokemon_obj.name}.gif" />`);
 
                 let imgW = (img[0] as HTMLImageElement).naturalWidth;
                 let imgH = (img[0] as HTMLImageElement).naturalHeight;
                 let imgR = imgH / imgW;
 
                 if (1 < imgR) {
-                    img.css({"height": "100%", "width": "initial"});
+                    img.css({ "height": "100%", "width": "initial" });
                 }
                 else if (i > imgR) {
-                    img.css({"height": "initial", "width": "100%"});
+                    img.css({ "height": "initial", "width": "100%" });
                 }
                 else {
-                    img.css({"height": "100%", "width": "100%"});
+                    img.css({ "height": "100%", "width": "100%" });
                 }
 
                 div.append(img);
                 $("#pokemon-view").append(div);
             }
+
         }
 
         $(".pokemon-thumb-container").on("click", e => {

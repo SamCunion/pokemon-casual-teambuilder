@@ -42,7 +42,7 @@ const pokemon = csvToObject("pokemon");
 const types = csvToObject("types");
 
 
-let species = {};
+let out_pokemon = {};
 let evolution_chains = {};
 let type_lookup = {};
 let location_area_to_location = {};
@@ -52,7 +52,15 @@ let location_id_to_name = {};
 for (let i = 0; i < pokemon.length; i++) {
     let entry = pokemon[i];
     if (!((entry.identifier.includes("-mega")) || (entry.identifier.includes("-totem")) || (entry.identifier.includes("-gmax")))) {
-        species[entry.id] = {id: entry.id, name: entry.identifier, species: entry.species_id};
+        out_pokemon[entry.id] = {id: entry.id, name: entry.identifier, species: entry.species_id};
+
+        //if the pokemon's species doesnt match its ID, its a form
+        if (entry.id !== entry.species_id) {
+            if (!out_pokemon[entry.species_id].forms) {
+                out_pokemon[entry.species_id].forms = [];
+            }
+            out_pokemon[entry.species_id].forms.push(entry.id);
+        }
     }
 }
 
@@ -60,7 +68,7 @@ console.log("Loaded initial pokemon");
 
 //Evolution chain becomes value. Evolves from becomes value. Evolution chain becomes its own object with the ID being the key holding an array of pokemon ID in the chain
 //is_legendary and is_mythical values also added to each valid key
-let species_keys = Object.keys(species);
+let species_keys = Object.keys(out_pokemon);
 for (let i = 0; i < pokemon_species.length; i++) {
     let entry = pokemon_species[i];
     if (!evolution_chains[entry.evolution_chain_id]) {
@@ -69,8 +77,8 @@ for (let i = 0; i < pokemon_species.length; i++) {
     evolution_chains[entry.evolution_chain_id].push(entry.id);
 
     for (let j = 0; j < species_keys.length; j++) {
-        if (species[species_keys[j]].species === entry.id) {
-            let e = species[species_keys[j]];
+        if (out_pokemon[species_keys[j]].species === entry.id) {
+            let e = out_pokemon[species_keys[j]];
             e.evolution_chain = entry.evolution_chain_id;
             e.evolves_from = entry.evolves_from_species_id ? entry.evolves_from_species_id : null;
             e.is_legendary = Boolean(Number(entry.is_legendary));
@@ -87,8 +95,8 @@ console.log("Filled in species");
 
 for (let i = 0; i < pokemon_stats.length; i++) {
     let entry = pokemon_stats[i];
-    if (entry.stat_id > 0 && entry.stat_id < 7 && species[entry.pokemon_id]) {
-        species[entry.pokemon_id].stat_total += Number(entry.base_stat);
+    if (entry.stat_id > 0 && entry.stat_id < 7 && out_pokemon[entry.pokemon_id]) {
+        out_pokemon[entry.pokemon_id].stat_total += Number(entry.base_stat);
     }
 }
 
@@ -104,11 +112,11 @@ for (let i = 0; i < types.length; i++) {
 
 for (let i = 0; i < pokemon_types.length; i++) {
     let entry = pokemon_types[i];
-    if (species[entry.pokemon_id]) {
-        if (!species[entry.pokemon_id].types) {
-            species[entry.pokemon_id].types = [];
+    if (out_pokemon[entry.pokemon_id]) {
+        if (!out_pokemon[entry.pokemon_id].types) {
+            out_pokemon[entry.pokemon_id].types = [];
         }
-        species[entry.pokemon_id].types.push(type_lookup[entry.type_id]);
+        out_pokemon[entry.pokemon_id].types.push(type_lookup[entry.type_id]);
     }
 
 }
@@ -132,13 +140,13 @@ for (let i = 0; i < location_names.length; i++) {
 //for each pokemon, add a "location" object, with each version ID as the key, and its locations names in an array
 for (let i = 0; i < encounters.length; i++) {
     let entry = encounters[i];
-    if (species[entry.pokemon_id]) { //pokemon exists
-        if (!species[entry.pokemon_id].locations[entry.version_id]) {
-            species[entry.pokemon_id].locations[entry.version_id] = [];
+    if (out_pokemon[entry.pokemon_id]) { //pokemon exists
+        if (!out_pokemon[entry.pokemon_id].locations[entry.version_id]) {
+            out_pokemon[entry.pokemon_id].locations[entry.version_id] = [];
         }
         let location_name = location_id_to_name[location_area_to_location[entry.location_area_id]];
-        if (species[entry.pokemon_id].locations[entry.version_id].indexOf(location_name) < 0) {
-            species[entry.pokemon_id].locations[entry.version_id].push(location_name);
+        if (out_pokemon[entry.pokemon_id].locations[entry.version_id].indexOf(location_name) < 0) {
+            out_pokemon[entry.pokemon_id].locations[entry.version_id].push(location_name);
         }
     }
 }
@@ -157,24 +165,36 @@ for (let i = 0; i < keys.length; i++) {
     let chain_items = evolution_chains[chain_id];
     let group_evolves_from = [];
     for (let j = 0; j < chain_items.length; j++) {
-        let this_species = species[chain_items[j]];
-        this_species.isFinal = true;
-        group_evolves_from.push(this_species.evolves_from);
+        let this_pokemon = out_pokemon[chain_items[j]];
+        if (this_pokemon.forms) { //has a form
+            for (let k = 0; k < this_pokemon.forms.length; k++) {
+                let form_pokemon = out_pokemon[this_pokemon.forms[k]];
+                form_pokemon.isFinal = true;
+                group_evolves_from.push(form_pokemon.evolves_from);
+            }
+        }
+        this_pokemon.isFinal = true;
+        group_evolves_from.push(this_pokemon.evolves_from);
     }
     for (let j = 0; j < chain_items.length; j++) {
-        let this_species = species[chain_items[j]];
-        if (group_evolves_from.indexOf(this_species.id) >= 0) {
-            this_species.isFinal = false;
+        let this_pokemon = out_pokemon[chain_items[j]];
+        if (group_evolves_from.indexOf(this_pokemon.id) >= 0) {
+            this_pokemon.isFinal = false;
+            if (this_pokemon.forms) {
+                for (let k = 0; k < this_pokemon.forms.length; k++) {
+                    out_pokemon[this_pokemon.forms[k]].isFinal = false;
+                }
+            }
         }
     }
 }
 console.log("Found Final Evolutions")
 
 //If it does "evolve from", add the child pokemon to its own location object
-species_keys = Object.keys(species);
+species_keys = Object.keys(out_pokemon);
 for (let i = 1; i < species_keys.length; i++) {
-    if (species[i]) {
-        let entry = species[i];
+    if (out_pokemon[i]) {
+        let entry = out_pokemon[i];
         if (entry.isFinal) {
             entry.locations = getLineLocations(entry.id);
         }
@@ -183,23 +203,23 @@ for (let i = 1; i < species_keys.length; i++) {
 console.log("Combined Locations");
 
 //finally loop through the finished list, removing any entries that dont have "isFinal", also remove isFinal from entries, constructing the final output json
-species_keys = Object.keys(species);
+species_keys = Object.keys(out_pokemon);
 for (let i = 0; i < species_keys.length; i++) {
-    let entry = species[species_keys[i]];
+    let entry = out_pokemon[species_keys[i]];
     if (entry.name.includes("typhlosion")) {
         console.log(entry);
     }
     if (!entry.isFinal) {
-        delete species[species_keys[i]];
+        delete out_pokemon[species_keys[i]];
     }
     else {
-        delete species[species_keys[i]].isFinal;
+        delete out_pokemon[species_keys[i]].isFinal;
     }
 }
 
 console.log("Completed Finishing Touches");
 
-let stringified_out = JSON.stringify(species);
+let stringified_out = JSON.stringify(out_pokemon);
 fs.writeFileSync(path.join(__dirname, "pokemon.json"), stringified_out);
 
 console.log("Complete!");
@@ -228,7 +248,7 @@ function csvToObject(filename) {
 }
 
 function getLineLocations(parent_id) {
-    let spec = species[parent_id];
+    let spec = out_pokemon[parent_id];
     if (spec.evolves_from) {
         return MergeLocations(spec.locations, getLineLocations(spec.evolves_from));
     }
