@@ -31,6 +31,24 @@ export default class App {
             App.BackToSelect();
         })
 
+        /**
+         * Search box functionality
+         */
+        $("#pokemon-search").on("input", e => {
+            let input_value = (e.target as HTMLInputElement).value;
+            $(".pokemon-thumb-container").each((i, v) => {
+                let item_name = v.dataset["pkmn_name"];
+                if (!item_name.includes(input_value)) {
+                    $(v).hide();
+                    $(v).removeClass("d-flex");
+                }
+                else {
+                    $(v).show();
+                    $(v).addClass("d-flex");
+                }
+            })
+        })
+
         App.hasInitiated = true;
         App.team = new Team();
     }
@@ -41,6 +59,7 @@ export default class App {
             this.current_version = version;
             this.team = new Team();
         }
+        (document.getElementById("pokemon-search") as HTMLInputElement).value = "";
         App.coverage = new Coverage();
         window.location.hash = "#app"
         App.ListPokemon();
@@ -63,7 +82,7 @@ export default class App {
                         }
                     }
                 }
-                let div = $(`<div class="pokemon-thumb-container d-flex" data-pkmn_id=${pokemon_obj.id}></div>`);
+                let div = $(`<div class="pokemon-thumb-container d-flex" data-pkmn_id=${pokemon_obj.id} data-pkmn_name="${pokemon_obj.name}"></div>`);
                 let img = $(`<img src="/public/img/pokemon-sprites/gifs/${pokemon_obj.name}.gif" />`);
 
                 let imgW = (img[0] as HTMLImageElement).naturalWidth;
@@ -81,7 +100,7 @@ export default class App {
                 }
 
                 div.append(img);
-                $("#pokemon-view").append(div);
+                $("#pokemon-list").append(div);
             }
 
         }

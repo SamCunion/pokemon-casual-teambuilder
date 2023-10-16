@@ -16,8 +16,7 @@
             "id": "39",
             "name": "Pokémon Legends Arceus",
             "img": "legends-arceus.jpg",
-            "form": "hisui",
-            "forms": ["arcanine", "avalugg", "braviary", "decidueye", "electrode", "goodra", "lilligant", "qwilfish", "samurott", "typhlosion", "zoroark"]
+            "form": "hisui"
         },
         {
             "id": "38",
@@ -35,15 +34,13 @@
             "id": "34",
             "name": "Pokémon Shield",
             "img": "shield.jpg",
-            "form": "galar",
-            "forms": ["articuno", "moltres", "slowbro", "slowking", "weezing", "zapdos", "darmanitan" ,"farfetch'd", "linoone", "rapidash", "stunfisk"]
+            "form": "galar"
         },
         {
             "id": "33",
             "name": "Pokémon Sword",
             "img": "sword.jpg",
-            "form": "galar",
-            "forms": ["articuno", "moltres", "slowbro", "slowking", "weezing", "zapdos", "darmanitan" ,"farfetch'd", "linoone", "rapidash", "stunfisk"]
+            "form": "galar"
         },
         {
             "id": "32",
@@ -59,29 +56,25 @@
             "id": "30",
             "name": "Pokémon Ultra Moon",
             "img": "ultra-moon.jpg",
-            "form": "alola",
-            "forms": ["dugtrio", "golem", "muk", "ninetales", "persian", "raichu", "sandslash", "exeggutor", "marowak", "raticate"]
+            "form": "alola"
         },
         {
             "id": "29",
             "name": "Pokémon Ultra Sun",
             "img": "ultra-sun.jpg",
-            "form": "alola",
-            "forms": ["dugtrio", "golem", "muk", "ninetales", "persian", "raichu", "sandslash", "exeggutor", "marowak", "raticate"]
+            "form": "alola"
         },
         {
             "id": "28",
             "name": "Pokémon Moon",
             "img": "moon.jpg",
-            "form": "alola",
-            "forms": ["dugtrio", "golem", "muk", "ninetales", "persian", "raichu", "sandslash", "exeggutor", "marowak", "raticate"]
+            "form": "alola"
         },
         {
             "id": "27",
             "name": "Pokémon Sun",
             "img": "sun.jpg",
-            "form": "alola",
-            "forms": ["dugtrio", "golem", "muk", "ninetales", "persian", "raichu", "sandslash", "exeggutor", "marowak", "raticate"]
+            "form": "alola"
         },
         {
             "id": "26",
