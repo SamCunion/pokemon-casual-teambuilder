@@ -15,5 +15,14 @@ export default {
             <p>Save this image to your device so that you can reference it in your playthrough!</p>
             <canvas id="infographic-canvas"></canvas>
         </div>
+    `,
+    route_select: `
+        <div class="text-center" id="route-select-container" style="height: 95%">
+            <h3>Select Route:</h3>
+            <p id="route-warning-text" class="text-danger"></p>
+            <div id="route-select-list-container" class="w-50 h-75 ml-25 d-inline-block" >
+
+            </div>
+        </div>
     `
 }

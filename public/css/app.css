@@ -208,3 +208,16 @@ img, label {
 .pokemon-thumb-container img {
     margin: auto auto;
 }
+#route-select-list-container {
+    background-color: #dcdcdc;
+    border: 1px solid black;
+    overflow-y: scroll;
+}
+.location-item {
+    height: 10%;
+    cursor: pointer;
+    flex: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -moz-user-select: none;
+}

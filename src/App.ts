@@ -49,6 +49,56 @@ export default class App {
             })
         })
 
+        /**
+         * Route select buttons functionality
+         */
+        $(".route-select-button").on("click", e => {
+            let slot_id = Number(e.currentTarget.dataset["slot"]);
+            let pokemon = App.team.Get(slot_id);
+            
+            if (!pokemon[0]) {
+                return;
+            }
+
+            InfoOverlay.setContent(Html.route_select);
+            InfoOverlay.Show();
+
+            if (App.current_version.id > 24) { //detect if its one of the games with no data
+                $("#route-warning-text").html("Warning: Unfortunately, the database I used to determine the in-game location of pokémon didn't have information for the most recent games. If the database is updated, then they will be added. Instead, you can type a location into the input box below which will be added to the final infographic. You can find the locations for pokemon on other websites such as <a target='_blank' rel='noopener noreferrer' href='https://bulbapedia.bulbagarden.net' >Bulbapedia</a>.")
+                let container = $(`<div class="input-group justify-content-center w-100 align-items-center d-flex h-100"></div>`);
+                let input = $(`<input type="text" placeholder="Location" class="form-control w-50" style="flex: none"/>`);
+                let aside = $(`<div class="input-group-append"></div>`);
+                let confirm = $(`<button class="btn btn-primary">Confirm</button>`);
+
+                $(confirm).on("click", e => {
+                    App.team.SetLocation(slot_id, (input[0] as HTMLInputElement).value);
+                    $("#info-overlay-close").click();
+                })
+
+                input.appendTo(container);
+                confirm.appendTo(aside);
+                aside.appendTo(container);
+                container.appendTo("#route-select-list-container");
+
+            }
+            else if (pokemon[0].locations[App.current_version.id]) { //locations found
+                let locations = pokemon[0].locations[App.current_version.id];
+                $(`<div class="list-group h-100" id="route-list"></div>`).appendTo("#route-select-list-container");
+                for (let i = 0; i < locations.length; i++) {
+                    let location = locations[i];
+                    let item = $(`<a class="location-item list-group-item list-group-item-action align-items-center justify-content-between d-flex ${pokemon[1] === location ? "active" : ""}">${location}</a>`);
+                    item.on("click", e=> {
+                        App.team.SetLocation(slot_id, location);
+                        $("#info-overlay-close").click();
+                    })
+                    item.appendTo("#route-list");
+                }
+            }
+            else {
+                $("#route-select-list-container").append(`<h4>No wild encounters found for pokémon in game.</h4>`)
+            }
+        })
+
         App.hasInitiated = true;
         App.team = new Team();
     }

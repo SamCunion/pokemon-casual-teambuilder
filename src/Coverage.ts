@@ -23,8 +23,8 @@ export default class Coverage {
         this.defence_threats = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         let team = App.team.GetAll();
         for (let i = 0; i < team.length; i++) {
-            if (team[i]) {
-                let pokemon = team[i];
+            if (team[i][0]) {
+                let pokemon = team[i][0];
                 let types = pokemon.types;
                 let type_ids = [];
                 let accumulated_effacy_def = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
