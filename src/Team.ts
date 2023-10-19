@@ -45,7 +45,7 @@ export default class Team {
         for (let i = 0; i < this.pokemon.length; i++) {
             let item = this.pokemon[i][0];
             if (item) {
-                let elem = $(`<img class="pokemon-team-sprite" src="/public/img/pokemon-sprites/gifs/${item.name}.gif" />`);
+                let elem = $(`<img class="pokemon-team-sprite" id="pokemon-sprite-${i}" src="/public/img/pokemon-sprites/gifs/${item.name}.gif" />`);
                 elem.on("click", e => {
                     this.Remove(i);
                 })

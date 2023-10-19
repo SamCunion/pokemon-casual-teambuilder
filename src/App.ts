@@ -6,6 +6,7 @@ import pokemon from "./lib/pokemon.json";
 import GameSelector from "./GameSelector";
 import Team from "./Team";
 import Coverage from "./Coverage";
+import Infographic from "./Infographic";
 
 export default class App {
 
@@ -97,6 +98,14 @@ export default class App {
             else {
                 $("#route-select-list-container").append(`<h4>No wild encounters found for pokémon in game.</h4>`)
             }
+        })
+
+        /**
+         * Infographic button functionality
+         */
+        $("#generate-infographic-button").on("click", e => {
+            let infographic = new Infographic(App.team);
+            infographic.Show();
         })
 
         App.hasInitiated = true;
