@@ -83,7 +83,7 @@ for (let i = 0; i < pokemon_species.length; i++) {
             e.evolution_chain = entry.evolution_chain_id;
             e.evolves_from = entry.evolves_from_species_id ? entry.evolves_from_species_id : null;
             e.is_legendary = Boolean(Number(entry.is_legendary));
-            e.is_mythic = Boolean(Number(entry.is_mythic));
+            e.is_mythic = Boolean(Number(entry.is_mythical));
             e.stat_total = 0;
             e.locations = {};
         }
