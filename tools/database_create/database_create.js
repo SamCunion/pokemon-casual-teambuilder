@@ -40,6 +40,7 @@ const pokemon_stats = csvToObject("pokemon_stats");
 const pokemon_types = csvToObject("pokemon_types");
 const pokemon = csvToObject("pokemon");
 const types = csvToObject("types");
+const pokemon_types_past = csvToObject("pokemon_types_past");
 
 
 let out_pokemon = {};
@@ -121,6 +122,16 @@ for (let i = 0; i < pokemon_types.length; i++) {
 
 }
 console.log("Types applied");
+
+//past types for previous generations
+for (let i = 0; i < pokemon_types_past.length; i++) {
+    let entry = pokemon_types_past[i];
+    if (!out_pokemon[entry.pokemon_id].past_type) {
+        out_pokemon[entry.pokemon_id].past_type = {last_generation: entry.generation_id, types: []};
+    }
+    out_pokemon[entry.pokemon_id].past_type.types.push(type_lookup[entry.type_id]);
+}
+console.log("Past types applied");
 
 //map location_area to location_id
 for (let i = 0; i < location_areas.length; i++) {
@@ -206,9 +217,6 @@ console.log("Combined Locations");
 species_keys = Object.keys(out_pokemon);
 for (let i = 0; i < species_keys.length; i++) {
     let entry = out_pokemon[species_keys[i]];
-    if (entry.name.includes("typhlosion")) {
-        console.log(entry);
-    }
     if (!entry.isFinal) {
         delete out_pokemon[species_keys[i]];
     }

@@ -26,6 +26,10 @@ export default class Coverage {
             if (team[i][0]) {
                 let pokemon = team[i][0];
                 let types = pokemon.types;
+                if (pokemon.past_type && App.current_version.generation <= pokemon.past_type.last_generation) {
+                    console.log("updated types used");
+                    types = pokemon.past_type.types;
+                }
                 let type_ids = [];
                 let accumulated_effacy_def = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
                 let accumulated_effacy_off = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];

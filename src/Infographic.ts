@@ -1,3 +1,4 @@
+import App from "./App";
 import Html from "./Html";
 import InfoOverlay from "./InfoOverlay";
 import Team from "./Team";
@@ -47,6 +48,9 @@ export default class Infographic {
             let current_pokemon = pokemon[i];
             if (current_pokemon[0]) {
                 let pokemon_types = current_pokemon[0].types;
+                if (current_pokemon[0].past_type && App.current_version.generation <= current_pokemon[0].past_type.last_generation) {
+                    pokemon_types = current_pokemon[0].past_type.types;
+                }
                 let location = current_pokemon[1];
                 let name = current_pokemon[0].name[0].toUpperCase() + current_pokemon[0].name.substring(1, current_pokemon[0].name.length);
                 let sprite = document.getElementById(`pokemon-sprite-${i}`) as HTMLImageElement;

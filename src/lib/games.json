@@ -4,197 +4,234 @@
             "id": "41",
             "name": "Pokémon Violet",
             "img": "violet.jpg",
-            "form": "paldea"
+            "form": "paldea",
+            "generation": "9"
         },
         {
             "id": "40",
             "name": "Pokémon Scarlet",
             "img": "scarlet.jpg",
-            "form": "paldea"
+            "form": "paldea",
+            "generation": "9"
         },
         {
             "id": "39",
             "name": "Pokémon Legends Arceus",
             "img": "legends-arceus.jpg",
-            "form": "hisui"
+            "form": "hisui",
+            "generation": "8"
         },
         {
             "id": "38",
             "name": "Pokémon Shining Pearl",
             "img": "shining-pearl.jpg",
-            "use-dex": "13"
+            "use-dex": "13",
+            "generation": "8"
         },
         {
             "id": "37",
             "name": "Pokémon Brilliant Diamond",
             "img": "brilliant-diamond.jpg",
-            "use-dex": "12"
+            "use-dex": "12",
+            "generation": "8"
         },
         {
             "id": "34",
             "name": "Pokémon Shield",
             "img": "shield.jpg",
-            "form": "galar"
+            "form": "galar",
+            "generation": "8"
         },
         {
             "id": "33",
             "name": "Pokémon Sword",
             "img": "sword.jpg",
-            "form": "galar"
+            "form": "galar",
+            "generation": "8"
         },
         {
             "id": "32",
             "name": "Pokémon Let's Go, Eevee!",
-            "img": "lets-go-eevee.jpg"
+            "img": "lets-go-eevee.jpg",
+            "generation": "7"
         },
         {
             "id": "31",
             "name": "Pokémon Let's Go, Pikachu!",
-            "img": "lets-go-pikachu.jpg"
+            "img": "lets-go-pikachu.jpg",
+            "generation": "7"
         },
         {
             "id": "30",
             "name": "Pokémon Ultra Moon",
             "img": "ultra-moon.jpg",
-            "form": "alola"
+            "form": "alola",
+            "generation": "7"
         },
         {
             "id": "29",
             "name": "Pokémon Ultra Sun",
             "img": "ultra-sun.jpg",
-            "form": "alola"
+            "form": "alola",
+            "generation": "7"
         },
         {
             "id": "28",
             "name": "Pokémon Moon",
             "img": "moon.jpg",
-            "form": "alola"
+            "form": "alola",
+            "generation": "7"
         },
         {
             "id": "27",
             "name": "Pokémon Sun",
             "img": "sun.jpg",
-            "form": "alola"
+            "form": "alola",
+            "generation": "7"
         },
         {
             "id": "26",
             "name": "Pokémon Alpha Sapphire",
-            "img": "alpha-sapphire.jpg"
+            "img": "alpha-sapphire.jpg",
+            "generation": "6"
         },
         {
             "id": "25",
             "name": "Pokémon Omega Ruby",
-            "img": "omega-ruby.jpg"
+            "img": "omega-ruby.jpg",
+            "generation": "6"
         },
         {
             "id": "24",
             "name": "Pokémon Y",
-            "img": "y.jpg"
+            "img": "y.jpg",
+            "generation": "6"
         },
         {
             "id": "23",
             "name": "Pokémon X",
-            "img": "x.jpg"
+            "img": "x.jpg",
+            "generation": "6"
         },
         {
             "id": "22",
             "name": "Pokémon White 2",
-            "img": "white-2.jpg"
+            "img": "white-2.jpg",
+            "generation": "5"
         },
         {
             "id": "21",
             "name": "Pokémon Black 2",
-            "img": "black-2.jpg"
+            "img": "black-2.jpg",
+            "generation": "5"
         },
         {
             "id": "18",
             "name": "Pokémon White",
-            "img": "white.jpg"
+            "img": "white.jpg",
+            "generation": "5"
         },
         {
             "id": "17",
             "name": "Pokémon Black",
-            "img": "black.jpg"
+            "img": "black.jpg",
+            "generation": "5"
         },
         {
             "id": "16",
             "name": "Pokémon Soul Silver",
-            "img": "soul-silver.jpg"
+            "img": "soul-silver.jpg",
+            "generation": "4"
         },
         {
             "id": "15",
             "name": "Pokémon Heart Gold",
-            "img": "heart-gold.jpg"
+            "img": "heart-gold.jpg",
+            "generation": "4"
         },
         {
             "id": "14",
             "name": "Pokémon Platinum",
-            "img": "platinum.jpg"
+            "img": "platinum.jpg",
+            "generation": "4"
         },
         {
             "id": "13",
             "name": "Pokémon Pearl",
-            "img": "pearl.jpg"
+            "img": "pearl.jpg",
+            "generation": "4"
         },
         {
             "id": "12",
             "name": "Pokémon Diamond",
-            "img": "diamond.jpg"
+            "img": "diamond.jpg",
+            "generation": "4"
         },
         {
             "id": "11",
             "name": "Pokémon Leaf Green",
-            "img": "leaf-green.jpg"
+            "img": "leaf-green.jpg",
+            "generation": "3"
         },
         {
             "id": "10",
             "name": "Pokémon Fire Red",
-            "img": "fire-red.jpg"
+            "img": "fire-red.jpg",
+            "generation": "3"
         },
         {
             "id": "9",
             "name": "Pokémon Emerald",
-            "img": "emerald.jpg"
+            "img": "emerald.jpg",
+            "generation": "3"
         },
         {
             "id": "8",
             "name": "Pokémon Sapphire",
-            "img": "sapphire.jpg"
+            "img": "sapphire.jpg",
+            "generation": "3"
         },
         {
             "id": "7",
             "name": "Pokémon Ruby",
-            "img": "ruby.jpg"
+            "img": "ruby.jpg",
+            "generation": "3"
         },
         {
             "id": "6",
             "name": "Pokémon Crystal",
-            "img": "crystal.jpg"
+            "img": "crystal.jpg",
+            "generation": "2"
         },
         {
             "id": "5",
             "name": "Pokémon Silver",
-            "img": "silver.jpg"
+            "img": "silver.jpg",
+            "generation": "2"
         },
         {
             "id": "4",
             "name": "Pokémon Gold",
-            "img": "gold.jpg"
+            "img": "gold.jpg",
+            "generation": "2"
         },
         {
             "id": "3",
             "name": "Pokémon Yellow",
-            "img": "yellow.jpg"
+            "img": "yellow.jpg",
+            "generation": "1"
         },
         {
             "id": "2",
             "name": "Pokémon Blue",
-            "img": "blue.jpg"
+            "img": "blue.jpg",
+            "generation": "1"
         },
         {
             "id": "1",
             "name": "Pokémon Red",
-            "img": "red.jpg"
+            "img": "red.jpg",
+            "generation": "1"
         }
     ]
 }
