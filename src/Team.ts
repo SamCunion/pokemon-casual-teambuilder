@@ -40,6 +40,17 @@ export default class Team {
         return this.pokemon;
     }
 
+    public includes(pokemon): boolean {
+        let id_1 = pokemon.id;
+        let out = false;
+        this.pokemon.forEach((e) => {
+            if (e[0] && e[0].id === id_1) {
+                out = true;
+            }
+        })
+        return out;
+    }
+
     private UpdateDisplay() {
         $(".pokemon-team-sprite").remove();
         for (let i = 0; i < this.pokemon.length; i++) {

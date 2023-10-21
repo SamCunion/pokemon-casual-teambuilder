@@ -14,6 +14,10 @@ export default class App {
     public static current_version = null;
     public static team: Team;
     public static coverage: Coverage;
+    public static legendaryEnabled: boolean = false;
+    public static mythicEnabled: boolean = false;
+
+    private static active_pokemon = [];
 
     public static Init() {
 
@@ -60,11 +64,12 @@ export default class App {
             if (!pokemon[0]) {
                 return;
             }
+            let use_version_locations = App.current_version["use-dex"] ? App.current_version["use-dex"] : App.current_version.id;
 
             InfoOverlay.setContent(Html.route_select);
             InfoOverlay.Show();
 
-            if (App.current_version.id > 24) { //detect if its one of the games with no data
+            if (["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "39", "40", "41"].includes(App.current_version.id)) { //detect if its one of the games with no data
                 $("#route-warning-text").html("Warning: Unfortunately, the database I used to determine the in-game location of pokémon didn't have information for the most recent games. If the database is updated, then they will be added. Instead, you can type a location into the input box below which will be added to the final infographic. You can find the locations for pokemon on other websites such as <a target='_blank' rel='noopener noreferrer' href='https://bulbapedia.bulbagarden.net' >Bulbapedia</a>.")
                 let container = $(`<div class="input-group justify-content-center w-100 align-items-center d-flex h-100"></div>`);
                 let input = $(`<input type="text" placeholder="Location" class="form-control w-50" style="flex: none"/>`);
@@ -82,8 +87,8 @@ export default class App {
                 container.appendTo("#route-select-list-container");
 
             }
-            else if (pokemon[0].locations[App.current_version.id]) { //locations found
-                let locations = pokemon[0].locations[App.current_version.id];
+            else if (pokemon[0].locations[use_version_locations]) { //locations found
+                let locations = pokemon[0].locations[use_version_locations];
                 $(`<div class="list-group h-100" id="route-list"></div>`).appendTo("#route-select-list-container");
                 for (let i = 0; i < locations.length; i++) {
                     let location = locations[i];
@@ -108,6 +113,44 @@ export default class App {
             infographic.Show();
         })
 
+        /**
+         * Legendary switch functionality
+         */
+        $("#legendary-switch").on("change", e => {
+            if ($(e.target).is(":checked")) {
+                $(".legendary").show().addClass("d-flex");
+                App.legendaryEnabled = true;
+            }
+            else {
+                $(".legendary").hide().removeClass("d-flex");
+                App.legendaryEnabled = false;
+            }
+        })
+
+        /**
+         * Mythic switch functionality
+         */
+        $("#mythic-switch").on("change", e => {
+            if ($(e.target).is(":checked")) {
+                $(".mythic").show().addClass("d-flex");
+            }
+            else {
+                $(".mythic").hide().removeClass("d-flex");
+            }
+        })
+
+        /**
+         * Randomise button functionality
+         */
+        $("#randomise-button").on("click", e => {
+            if ($("#randomise-switch").prop("checked")) {
+                App.team = new Team();
+            }
+            for (let i = 0; i < 7; i++) {
+                App.team.Add(App.getRandomPokemon());
+            }
+        })
+
         App.hasInitiated = true;
         App.team = new Team();
     }
@@ -115,8 +158,9 @@ export default class App {
     public static Show(version) {
         console.log("Loading game:", version);
         if (version !== this.current_version) {
-            this.current_version = version;
-            this.team = new Team();
+            App.current_version = version;
+            App.team = new Team();
+            App.active_pokemon = [];
         }
         (document.getElementById("pokemon-search") as HTMLInputElement).value = "";
         App.coverage = new Coverage();
@@ -141,7 +185,8 @@ export default class App {
                         }
                     }
                 }
-                let div = $(`<div class="pokemon-thumb-container d-flex" data-pkmn_id=${pokemon_obj.id} data-pkmn_name="${pokemon_obj.name}"></div>`);
+                App.active_pokemon.push(pokemon_obj);
+                let div = $(`<div class="pokemon-thumb-container d-flex ${pokemon_obj.is_legendary ? "legendary" : ""} ${pokemon_obj.is_mythic ? "mythic" : ""}" data-pkmn_id=${pokemon_obj.id} data-pkmn_name="${pokemon_obj.name}"></div>`);
                 let img = $(`<img src="/public/img/pokemon-sprites/gifs/${pokemon_obj.name}.gif" />`);
 
                 let imgW = (img[0] as HTMLImageElement).naturalWidth;
@@ -159,9 +204,12 @@ export default class App {
                 }
 
                 div.append(img);
+
+                if ((!App.legendaryEnabled && pokemon_obj.is_legendary) || (!App.mythicEnabled && pokemon_obj.is_mythic)) {
+                    $(div).removeClass("d-flex").hide();
+                }
                 $("#pokemon-list").append(div);
             }
-
         }
 
         $(".pokemon-thumb-container").on("click", e => {
@@ -177,5 +225,14 @@ export default class App {
     public static BackToSelect() {
         window.location.hash = "#select";
         $(".pokemon-thumb-container").remove();
+    }
+
+    private static getRandomPokemon() {
+        let random_index = Math.floor(Math.random() * App.active_pokemon.length);
+        let random_pokemon = App.active_pokemon[random_index];
+        if ((!App.mythicEnabled && random_pokemon.is_mythic) || (!App.legendaryEnabled && random_pokemon.is_legendary) || App.team.includes(random_pokemon)) {
+            return App.getRandomPokemon();
+        }
+        return random_pokemon;
     }
 }
