@@ -7,6 +7,7 @@ import GameSelector from "./GameSelector";
 import Team from "./Team";
 import Coverage from "./Coverage";
 import Infographic from "./Infographic";
+import type_convert from "./lib/types.json";
 
 export default class App {
 
@@ -17,7 +18,10 @@ export default class App {
     public static legendaryEnabled: boolean = false;
     public static mythicEnabled: boolean = false;
 
-    private static active_pokemon = [];
+    public static active_pokemon = [];
+    public static suggested_pokemon = [];
+
+    private static readonly TYPE_BIAS = 10;
 
     public static Init() {
 
@@ -133,9 +137,11 @@ export default class App {
         $("#mythic-switch").on("change", e => {
             if ($(e.target).is(":checked")) {
                 $(".mythic").show().addClass("d-flex");
+                App.mythicEnabled = true;
             }
             else {
                 $(".mythic").hide().removeClass("d-flex");
+                App.mythicEnabled = false;
             }
         })
 
@@ -151,6 +157,25 @@ export default class App {
             }
         })
 
+        /**
+         * Suggest button functionality
+         */
+        $("#suggest-button").on("click", e => {
+            if ($("#suggest-switch").prop("checked")) {
+                for (let i = 0; i < 7; i++) {
+                    let pkmn = App.getSuggestedPokemon();
+                    console.log(`Suggested pokemon "${pkmn.name}" with bias: ${pkmn.bias} and stat total of: ${pkmn.stat_total}`);
+                    App.team.Add(pkmn);
+                }
+            }
+            else {
+                let pkmn = App.getSuggestedPokemon();
+                console.log(`Suggested pokemon "${pkmn.name}" with bias: ${pkmn.bias} and stat total of: ${pkmn.stat_total}`);
+                App.team.Add(pkmn);
+            }
+            App.updateSuggestionArray(App.active_pokemon, App.coverage.getCoverage());
+        })
+
         App.hasInitiated = true;
         App.team = new Team();
     }
@@ -161,6 +186,7 @@ export default class App {
             App.current_version = version;
             App.team = new Team();
             App.active_pokemon = [];
+            App.suggested_pokemon = [];
         }
         (document.getElementById("pokemon-search") as HTMLInputElement).value = "";
         App.coverage = new Coverage();
@@ -234,5 +260,71 @@ export default class App {
             return App.getRandomPokemon();
         }
         return random_pokemon;
+    }
+
+    public static updateSuggestionArray(availablePokemon, typeInfo) {
+        /**
+         * Loop through all types, determine rank of each type as 0,1,2 depending on if there is a off/def satisfactory or not
+         * Sort the types depending on this value
+         * 
+         * Loop through all active pokemon and rank by total power
+         * Add together total power and type rank * 100?
+         * Use the most wanted type for this calculation if pokemon has more than 1
+         * 
+         * Sort each pokemon by their overall bias value.
+         * 
+         * Retain the first 5? highest scoring pokemon.
+         * 
+         * Process needs to be run every time the team changes.
+         * 
+         */
+        let type_priority = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let off_threats = typeInfo[0];
+        let def_threats = typeInfo[1];
+        for (let i = 1; i < type_priority.length; i++) {
+            if (off_threats[i] === 0) {
+                type_priority[i]++;
+            }
+            if (def_threats[i] === 0) {
+                type_priority[i]++;
+            }
+        }
+
+        for (let i = 0; i < availablePokemon.length; i++) {
+            let pokemon = availablePokemon[i];
+            pokemon.bias = 0;
+            if (!App.team.includes(pokemon) && !(pokemon.is_legendary && !App.legendaryEnabled) && !(pokemon.is_mythic && !App.mythicEnabled)) {
+                /**
+                 * Look at each type of the pokemon
+                 * for each type, take its offensive and defencive effacacy, and check if its required by the type_priority
+                 * the above should add to an accumulator, which is in turn multiplied by a bias, and added to the base stat total
+                 */
+                for (let j = 0; j < pokemon.types.length; j++) {
+                    let pokemon_type = pokemon.types[j];
+                    let pokemon_type_id = type_convert.types[pokemon_type];
+                    for (let k = 1; k < type_convert.offence[pokemon_type_id].length; k++) {
+                        if (type_convert.offence[pokemon_type_id][k] > 1 && type_priority[k] > 0) {
+                            pokemon.bias += (App.TYPE_BIAS * type_priority[k]);
+                        }
+                    }
+                    for (let k = 1; k < type_convert.defence[pokemon_type_id].length; k++) {
+                        if (type_convert.defence[pokemon_type_id][k] > 1 && type_priority[k] > 0) {
+                            pokemon.bias += (App.TYPE_BIAS * type_priority[k]);
+                        }
+                    }
+                    pokemon.bias += pokemon.stat_total;
+                }
+            }
+        }
+
+        let sorted_pokemon = [...availablePokemon].sort((a, b) => {
+            return b.bias - a.bias;
+        });
+        App.suggested_pokemon = sorted_pokemon.slice(0, 4);
+    }
+
+    public static getSuggestedPokemon() {
+        App.updateSuggestionArray(App.active_pokemon, App.coverage.getCoverage());
+        return App.suggested_pokemon[Math.floor(Math.random() * App.suggested_pokemon.length)];
     }
 }

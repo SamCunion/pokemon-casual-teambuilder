@@ -65,6 +65,7 @@ export default class Team {
         }
         if (App.coverage) {
             App.coverage.Update();
+            App.updateSuggestionArray(App.active_pokemon, App.coverage.getCoverage());
         }
     }
 }

@@ -102,4 +102,8 @@ export default class Coverage {
             $("#typechart-result").html(this.good_overall_text);
         }
     }
+
+    public getCoverage() {
+        return [this.offence_threats, this.defence_threats];
+    }
 }
