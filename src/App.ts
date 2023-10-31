@@ -3,7 +3,6 @@ import InfoOverlay from "./InfoOverlay";
 
 import version_pokemon from "./lib/version_pokemon.json";
 import pokemon from "./lib/pokemon.json";
-import GameSelector from "./GameSelector";
 import Team from "./Team";
 import Coverage from "./Coverage";
 import Infographic from "./Infographic";
@@ -320,11 +319,33 @@ export default class App {
         let sorted_pokemon = [...availablePokemon].sort((a, b) => {
             return b.bias - a.bias;
         });
-        App.suggested_pokemon = sorted_pokemon.slice(0, 4);
+        App.suggested_pokemon = sorted_pokemon.slice(0, 5);
     }
 
     public static getSuggestedPokemon() {
         App.updateSuggestionArray(App.active_pokemon, App.coverage.getCoverage());
+        let current_team_member_count = 0;
+        for (let i = 0; i < App.team.GetAll().length; i++) {
+            if (App.team.GetAll()[i][0]) {
+                current_team_member_count++;
+            }
+        }
+        if (current_team_member_count < 5) {
+            let starter_pokemon_objs = [];
+            for (let i = 0; i < App.current_version.starters.length; i++) {
+                starter_pokemon_objs.push(pokemon[App.current_version.starters[i]]);
+            }
+            let team_includes_starter = false;
+            for (let i = 0; i < starter_pokemon_objs.length; i++) {
+                if (App.team.includes(starter_pokemon_objs[i])) {
+                    team_includes_starter = true;
+                    break;
+                }
+            }
+            if (!team_includes_starter) {
+                return starter_pokemon_objs[Math.floor(Math.random() * starter_pokemon_objs.length)];
+            }
+        }
         return App.suggested_pokemon[Math.floor(Math.random() * App.suggested_pokemon.length)];
     }
 }
