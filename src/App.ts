@@ -346,6 +346,11 @@ export default class App {
                 return starter_pokemon_objs[Math.floor(Math.random() * starter_pokemon_objs.length)];
             }
         }
-        return App.suggested_pokemon[Math.floor(Math.random() * App.suggested_pokemon.length)];
+        let suggested_pokemon;
+        do {
+            suggested_pokemon = App.suggested_pokemon[Math.floor(Math.random() * App.suggested_pokemon.length)];
+        } while (App.current_version.starters.includes(suggested_pokemon.id));
+
+        return suggested_pokemon;
     }
 }
