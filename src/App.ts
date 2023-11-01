@@ -104,7 +104,19 @@ export default class App {
                 }
             }
             else {
-                $("#route-select-list-container").append(`<h4>No wild encounters found for pokémon in game.</h4>`)
+                $("#route-warning-text").html("Did not find any wild encounters for pokémon in game. If this is a mistake, you can enter a location into the text box below, which will be used on the infographic instead.");
+                let container = $(`<div class="input-group justify-content-center w-100 align-items-center d-flex h-100"></div>`);
+                let input = $(`<input type="text" placeholder="Location" class="form-control w-50" style="flex: none"/>`);
+                let aside = $(`<div class="input-group-append"></div>`);
+                let confirm = $(`<button class="btn btn-primary">Confirm</button>`);
+                $(confirm).on("click", e => {
+                    App.team.SetLocation(slot_id, (input[0] as HTMLInputElement).value);
+                    $("#info-overlay-close").click();
+                })
+                input.appendTo(container);
+                confirm.appendTo(aside);
+                aside.appendTo(container);
+                container.appendTo("#route-select-list-container");
             }
         })
 
@@ -175,6 +187,23 @@ export default class App {
             App.updateSuggestionArray(App.active_pokemon, App.coverage.getCoverage());
         })
 
+        //pressing tab focuses search box
+        $(document).on("keydown", e => {
+            if (location.hash === "#app") {
+                if (e.key === "Tab") {
+                    e.preventDefault();
+                    $("#pokemon-search").val("").trigger("focus").trigger("input");
+                }
+                else if (e.key === "Escape") {
+                    e.preventDefault();
+                    $("#pokemon-search").val("").trigger("blur").trigger("input");
+                }
+                else {
+                    $("#pokemon-search").trigger("focus").trigger("input");
+                }
+            }
+        })
+
         App.hasInitiated = true;
         App.team = new Team();
     }
@@ -240,6 +269,7 @@ export default class App {
         $(".pokemon-thumb-container").on("click", e => {
             if (App.team.Add(pokemon[e.currentTarget.dataset.pkmn_id])) {
                 console.log(`Pokemon added to team:`, pokemon[e.currentTarget.dataset.pkmn_id]);
+                $("#pokemon-search").val("").trigger("input");
             }
             else {
                 console.log("Pokemon cannot be added to team, as it is full");
