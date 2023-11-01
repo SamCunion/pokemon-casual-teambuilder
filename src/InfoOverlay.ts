@@ -5,7 +5,7 @@ export default class InfoOverlay {
     private static exit_button;
 
     public static Init() {
-        InfoOverlay.exit_button = $('<button id="info-overlay-close">Close</button>');
+        InfoOverlay.exit_button = $('<button id="info-overlay-close" class="app-styled-button" >Close</button>');
         $(InfoOverlay.exit_button).on("click", () => {
             InfoOverlay.Hide();
         })

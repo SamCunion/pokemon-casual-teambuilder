@@ -187,7 +187,7 @@ export default class App {
             App.updateSuggestionArray(App.active_pokemon, App.coverage.getCoverage());
         })
 
-        //pressing tab focuses search box
+        //hotkeys
         $(document).on("keydown", e => {
             if (location.hash === "#app") {
                 if (e.key === "Tab") {
@@ -198,7 +198,33 @@ export default class App {
                     e.preventDefault();
                     $("#pokemon-search").val("").trigger("blur").trigger("input");
                 }
-                else {
+                else if (e.key === "Enter") {
+                    e.preventDefault();
+                    $("#generate-infographic-button").trigger("click");
+                }
+                else if (e.key === "r" && !$("#pokemon-search").is(":focus")) {
+                    $("#randomise-button").trigger("click");
+                }
+                else if (e.key === "R" && !$("#pokemon-search").is(":focus")) {
+                    $("#randomise-switch").trigger("click");
+                }
+                else if (e.key === "s" && !$("#pokemon-search").is(":focus")) {
+                    $("#suggest-button").trigger("click");
+                }
+                else if (e.key === "S" && !$("#pokemon-search").is(":focus")) {
+                    $("#suggest-switch").trigger("click");
+                }
+                else if (e.key === "L" && !$("#pokemon-search").is(":focus")) {
+                    $("#legendary-switch").trigger("click");
+                }
+                else if (e.key === "M" && !$("#pokemon-search").is(":focus")) {
+                    $("#mythic-switch").trigger("click");
+                }
+                else if (e.key === "C" && !$("#pokemon-search").is(":focus")) {
+                    App.team = new Team();
+                    App.coverage = new Coverage();
+                }
+                else if (e.key !== "Shift") {
                     $("#pokemon-search").trigger("focus").trigger("input");
                 }
             }
@@ -243,21 +269,24 @@ export default class App {
                 let div = $(`<div class="pokemon-thumb-container d-flex ${pokemon_obj.is_legendary ? "legendary" : ""} ${pokemon_obj.is_mythic ? "mythic" : ""}" data-pkmn_id=${pokemon_obj.id} data-pkmn_name="${pokemon_obj.name}"></div>`);
                 let img = $(`<img src="/public/img/pokemon-sprites/gifs/${pokemon_obj.name}.gif" />`);
 
-                let imgW = (img[0] as HTMLImageElement).naturalWidth;
-                let imgH = (img[0] as HTMLImageElement).naturalHeight;
-                let imgR = imgH / imgW;
-
-                if (1 < imgR) {
-                    img.css({ "height": "100%", "width": "initial" });
-                }
-                else if (i > imgR) {
-                    img.css({ "height": "initial", "width": "100%" });
-                }
-                else {
-                    img.css({ "height": "100%", "width": "100%" });
-                }
 
                 div.append(img);
+
+                $(img).on("load", e => {
+                    let imgW = (img[0] as HTMLImageElement).naturalWidth;
+                    let imgH = (img[0] as HTMLImageElement).naturalHeight;
+                    let imgR = imgH / imgW;
+
+                    if (1 < imgR) {
+                        img.css({ "height": "100%", "width": "initial" });
+                    }
+                    else if (i > imgR) {
+                        img.css({ "height": "initial", "width": "100%" });
+                    }
+                    else {
+                        img.css({ "height": "100%", "width": "100%" });
+                    }
+                })
 
                 if ((!App.legendaryEnabled && pokemon_obj.is_legendary) || (!App.mythicEnabled && pokemon_obj.is_mythic)) {
                     $(div).removeClass("d-flex").hide();
@@ -269,7 +298,7 @@ export default class App {
         $(".pokemon-thumb-container").on("click", e => {
             if (App.team.Add(pokemon[e.currentTarget.dataset.pkmn_id])) {
                 console.log(`Pokemon added to team:`, pokemon[e.currentTarget.dataset.pkmn_id]);
-                $("#pokemon-search").val("").trigger("input");
+                $("#pokemon-search").val("").trigger("input").trigger("focus");
             }
             else {
                 console.log("Pokemon cannot be added to team, as it is full");

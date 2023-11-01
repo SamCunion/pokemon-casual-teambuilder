@@ -73,6 +73,13 @@ img, label {
     position: absolute;
     border-radius: 20px;
 }
+#info-overlay-close {
+    font-size: 1.5em;
+    border-width: .3em;
+    position: absolute;
+    bottom: 3vh;
+    left: 2vw;
+}
 .no-scrollbar::-webkit-scrollbar {
     display: initial;
 }
@@ -99,9 +106,6 @@ img, label {
     gap: 0;
     grid-template-columns: auto;
     grid-template-rows: auto auto auto auto auto auto;
-}
-.pokemon-display-container {
-    
 }
 .pokemon-sprite-container {
     display: grid;
