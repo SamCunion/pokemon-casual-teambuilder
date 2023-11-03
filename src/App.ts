@@ -189,7 +189,7 @@ export default class App {
 
         //hotkeys
         $(document).on("keydown", e => {
-            if (location.hash === "#app") {
+            if (location.hash === "#app" && !InfoOverlay.is_active) {
                 if (e.key === "Tab") {
                     e.preventDefault();
                     $("#pokemon-search").val("").trigger("focus").trigger("input");
