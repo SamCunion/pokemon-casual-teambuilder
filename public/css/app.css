@@ -75,7 +75,6 @@ img, label {
 }
 #info-overlay-close {
     font-size: 1.5em;
-    border-width: .3em;
     position: absolute;
     bottom: 3vh;
     left: 2vw;
@@ -141,9 +140,20 @@ img, label {
 }
 
 .app-styled-button {
-    background-color: white;
-    border: .4em ridge rgb(102, 102, 255);
+    background-color: white /*rgb(13,110,253)*/;
+    border: .2em solid red;
+    border-radius: .4em;
     cursor: pointer;
+    -moz-transition: all .1s ease-in;
+    -webkit-transition: all .1s ease-in;
+    -o-transition: all .1s ease-in;
+    transition: all .1s ease-in;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+.app-styled-button:hover {
+    background-color: #f0c4c8;
 }
 .app-styled-button img {
     height: 100%;

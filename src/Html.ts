@@ -7,6 +7,7 @@ export default {
                 <li>Website design and programming - Sam Cunion</li>
                 <li>Animated sprites - <a target='_blank' rel='noopener noreferrer' href="https://pokemonshowdown.com/">Pokémon Showdown</a></li>
                 <li>Pokémon &copy; - Nintendo</li>
+                <li>Database - <a target='_blank' rel='noopener noreferrer' href="https://pokeapi.co/">PokéAPI</a></li>
             </ul>
         </div>
     `,

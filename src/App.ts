@@ -20,7 +20,7 @@ export default class App {
     public static active_pokemon = [];
     public static suggested_pokemon = [];
 
-    private static readonly TYPE_BIAS = 10;
+    private static readonly TYPE_BIAS = 150;
 
     public static Init() {
 

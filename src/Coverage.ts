@@ -73,10 +73,10 @@ export default class Coverage {
         for (let i = 1; i < 19; i++) {
             let type_strength = 0;
             if (this.offence_threats[i] >= 1) {
-                type_strength += 0.5;
+                type_strength += .5;
             }
             if (this.defence_threats[i] >= 1) {
-                type_strength += 0.5;
+                type_strength += .5;
             }
             switch (type_strength) {
                 case 0:
