@@ -1,43 +1,44 @@
-import App from "./App";
 import Html from "./Html";
 import InfoOverlay from "./InfoOverlay";
 import Team from "./Team";
-import Typechart from "./lib/types.json";
-const types = Typechart.types;
 
-export default class Infographic {
+export default class Infographic extends InfoOverlay {
 
-    private static readonly WIDTH: number = 500;
-    private static readonly HEIGHT_PER_POKEMON: number = 120;
-    private static readonly BORDER_HEIGHT: number = 5;
+    private readonly WIDTH: number = 500;
+    private readonly HEIGHT_PER_POKEMON: number = 120;
+    private readonly BORDER_HEIGHT: number = 5;
 
     private team: Team;
+    private generation: number;
 
-    
-    constructor(team: Team) {
+    constructor(team: Team, generation: number) {
+        super();
         this.team = team;
+        this.generation = generation;
     }
 
-    public Show() {
-        InfoOverlay.setContent(Html.infographic);
-        InfoOverlay.Show();
+    public override Show() {
+        super.setContent(Html.infographic);
+        super.Show();
         this.Populate(($("#infographic-canvas")[0] as HTMLCanvasElement));
     }
 
     private Populate(canvas: HTMLCanvasElement) {
+        //get pokemon and locations
+        const pokemon = this.team.getPokemon();
+        const locations = this.team.getLocations();
         //set dimensions
         let ctx = canvas.getContext("2d");
-        let pokemon = this.team.GetAll();
         let total_pokemon = 0;
         let last_pokemon_index = 0;
         for (let i = 0; i < pokemon.length; i++) {
-            if (pokemon[i][0]) {
+            if (pokemon[i]) {
                 total_pokemon++;
                 last_pokemon_index = i;
             }
         }
-        canvas.height = (total_pokemon * (Infographic.HEIGHT_PER_POKEMON + Infographic.BORDER_HEIGHT));
-        canvas.width = Infographic.WIDTH;
+        canvas.height = (total_pokemon * (this.HEIGHT_PER_POKEMON + this.BORDER_HEIGHT));
+        canvas.width = this.WIDTH;
 
         //pokeball sprite
         let pokeball = document.getElementsByClassName("pokeball-sprite")[0];
@@ -46,17 +47,17 @@ export default class Infographic {
         let starting_y = 0;
         for (let i = 0; i < pokemon.length; i++) {
             let current_pokemon = pokemon[i];
-            if (current_pokemon[0]) {
-                let pokemon_types = current_pokemon[0].types;
-                if (current_pokemon[0].past_type && App.current_version.generation <= current_pokemon[0].past_type.last_generation) {
-                    pokemon_types = current_pokemon[0].past_type.types;
+            if (current_pokemon) {
+                let pokemon_types = current_pokemon.types;
+                if (current_pokemon.past_types && this.generation <= Number(current_pokemon.past_types.last_generation)) {
+                    pokemon_types = current_pokemon.past_types.types;
                 }
-                let location = current_pokemon[1];
-                let name = current_pokemon[0].name[0].toUpperCase() + current_pokemon[0].name.substring(1, current_pokemon[0].name.length);
+                let location = locations[i];
+                let name = current_pokemon.name[0].toUpperCase() + current_pokemon.name.substring(1, current_pokemon.name.length);
                 let sprite = document.getElementById(`pokemon-sprite-${i}`) as HTMLImageElement;
                 //background
                 ctx.fillStyle = type_colours[pokemon_types[0]];
-                ctx.fillRect(0, starting_y, Infographic.WIDTH, Infographic.HEIGHT_PER_POKEMON);
+                ctx.fillRect(0, starting_y, this.WIDTH, this.HEIGHT_PER_POKEMON);
 
                 //pokeball
                 ctx.drawImage((pokeball as HTMLImageElement), 25, 5 + starting_y, 80, 80);
@@ -105,20 +106,20 @@ export default class Infographic {
                 //border
                 if (i !== last_pokemon_index) {
                     ctx.strokeStyle = "black";
-                    ctx.lineWidth = Infographic.BORDER_HEIGHT;
+                    ctx.lineWidth = this.BORDER_HEIGHT;
                     ctx.beginPath();
-                    ctx.moveTo(0, starting_y + Infographic.HEIGHT_PER_POKEMON + (Infographic.BORDER_HEIGHT / 2));
-                    ctx.lineTo(Infographic.WIDTH, starting_y + Infographic.HEIGHT_PER_POKEMON + (Infographic.BORDER_HEIGHT / 2));
+                    ctx.moveTo(0, starting_y + this.HEIGHT_PER_POKEMON + (this.BORDER_HEIGHT / 2));
+                    ctx.lineTo(this.WIDTH, starting_y + this.HEIGHT_PER_POKEMON + (this.BORDER_HEIGHT / 2));
                     ctx.stroke();
                 }
 
-                starting_y += Infographic.HEIGHT_PER_POKEMON + Infographic.BORDER_HEIGHT;
+                starting_y += this.HEIGHT_PER_POKEMON + this.BORDER_HEIGHT;
             }
         }
     }
 }
 
-const type_colours = {
+const type_colours : Record<string, string> = {
     "normal": "#ACA593",
     "fighting": "#A65238",
     "flying": "#98ABF7",
@@ -138,3 +139,5 @@ const type_colours = {
     "dark": "#745A4B",
     "fairy": "#F7B4F7"
 }
+
+const types : Record<string, string> = { "normal": "1", "fighting": "2", "flying": "3", "poison": "4", "ground": "5", "rock": "6", "bug": "7", "ghost": "8", "steel": "9", "fire": "10", "water": "11", "grass": "12", "electric": "13", "psychic": "14", "ice": "15", "dragon": "16", "dark": "17", "fairy": "18" }

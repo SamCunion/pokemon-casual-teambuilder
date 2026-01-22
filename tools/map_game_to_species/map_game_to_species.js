@@ -32,6 +32,7 @@ for (let i = 0; i < pokedex_version_groups.length; i++) {
  */
 for (let i = 0; i < pokemon_dex_numbers.length; i++) {
     let entry = pokemon_dex_numbers[i];
+    console.log(entry)
     let version_groups = pokedex_to_version_group[entry.pokedex_id];
     if (entry.pokedex_id !== "1" && entry.pokedex_id !== "11") {
         for (let j = 0; j < version_groups.length; j++) {
@@ -60,9 +61,12 @@ function csvToObject(filename) {
     let string_data = data.toString();
     let entries = string_data.split("\n");
     let fields = entries[0].split(",");
-    fields[fields.length - 1] = fields[fields.length - 1].slice(0, fields[fields.length - 1].length - 1);
+    fields[fields.length-1] = fields[fields.length-1].slice(0, fields[fields.length-1].length - 1);
     for (let i = 1; i < entries.length; i++) {
         let obj = {};
+        if (entries[i] == "") {
+            continue;
+        }
         let values = entries[i].split(",");
         values[values.length - 1] = values[values.length - 1].slice(0, values[values.length - 1].length - 1);
         for (let j = 0; j < fields.length; j++) {

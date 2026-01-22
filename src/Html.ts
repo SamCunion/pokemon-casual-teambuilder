@@ -4,9 +4,9 @@ export default {
         <div>
             <h1>Credits:</h1>
             <ul>
-                <li>Website design and programming - Sam Cunion</li>
+                <li>Web design and programming - Sam Cunion</li>
                 <li>Animated sprites - <a target='_blank' rel='noopener noreferrer' href="https://pokemonshowdown.com/">Pokémon Showdown</a></li>
-                <li>Pokémon &copy; - Nintendo</li>
+                <li>Pokémon &copy; - Nintendo/Gamefreak/The Pokémon Company</li>
                 <li>Database - <a target='_blank' rel='noopener noreferrer' href="https://pokeapi.co/">PokéAPI</a></li>
             </ul>
         </div>

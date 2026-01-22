@@ -213,7 +213,7 @@ for (let i = 1; i < species_keys.length; i++) {
 }
 console.log("Combined Locations");
 
-//finally loop through the finished list, removing any entries that dont have "isFinal", also remove isFinal from entries, constructing the final output json
+//finally loop through the finished list, removing any entries that dont have "isFinal", also remove isFinal, evolves_from, evolution_chain and species from entries, constructing the final output json
 species_keys = Object.keys(out_pokemon);
 for (let i = 0; i < species_keys.length; i++) {
     let entry = out_pokemon[species_keys[i]];
@@ -222,6 +222,9 @@ for (let i = 0; i < species_keys.length; i++) {
     }
     else {
         delete out_pokemon[species_keys[i]].isFinal;
+        delete out_pokemon[species_keys[i]].evolves_from;
+        delete out_pokemon[species_keys[i]].evolution_chain;
+        delete out_pokemon[species_keys[i]].species;
     }
 }
 
@@ -240,11 +243,14 @@ function csvToObject(filename) {
     let string_data = data.toString();
     let entries = string_data.split("\n");
     let fields = entries[0].split(",");
-    fields[fields.length-1] = fields[fields.length-1].slice(0, fields[fields.length-1].length - 1);
+    fields[fields.length-1] = fields[fields.length-1].slice(0, fields[fields.length-1].length);
     for (let i = 1; i < entries.length; i++) {
         let obj = {};
+        if (entries[i] == "") {
+            continue;
+        }
         let values = entries[i].split(",");
-        values[values.length - 1] = values[values.length - 1].slice(0, values[values.length - 1].length - 1);
+        values[values.length - 1] = values[values.length - 1].slice(0, values[values.length - 1].length);
         for (let j = 0; j < fields.length; j++) {
             obj[fields[j]] = values[j];
         }

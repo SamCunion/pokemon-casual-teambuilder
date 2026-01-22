@@ -14,20 +14,12 @@ module.exports = {
             use: {
                 loader: "ts-loader",
             }
-        },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
-            }
-    ]
+        }]
     },
-    mode: "production",
+    mode: "development",
     watch: true,
     resolve: {
-        extensions: [".ts", ".js", ".json"],
-        alias: {
-            jquery: "jquery/src/jquery"
-        }
-    },
+        extensions: [".ts", ".js"],
+    }
 
 }

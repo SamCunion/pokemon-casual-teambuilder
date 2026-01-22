@@ -1,38 +1,33 @@
 
-export default class InfoOverlay {
-    private static elem: HTMLElement;
-    private static content: string = "";
-    private static exit_button;
-    public static is_active = false;
+export default abstract class InfoOverlay {
+    private elem: HTMLElement;
+    private exit_button: HTMLDivElement;
 
-    public static Init() {
-        InfoOverlay.exit_button = $('<button id="info-overlay-close" class="app-styled-button" >Close</button>');
-        $(InfoOverlay.exit_button).on("click", () => {
-            InfoOverlay.Hide();
+    constructor() {
+        this.exit_button = $('<button id="info-overlay-close" class="app-styled-button" >Close</button>').get(0) as HTMLDivElement;
+        $(this.exit_button).on("click", () => {
+            this.Exit();
         })
-        InfoOverlay.elem = $("#info-overlay")[0];
-        $(InfoOverlay.elem).hide();
+        this.elem = $("#info-overlay")[0];
+        $(this.elem).hide();
 
-        InfoOverlay.elem.addEventListener("click", () => {
-            InfoOverlay.Hide();
+        this.elem.addEventListener("click", () => {
+            this.Exit();
         })
 
         document.getElementById("info-overlay-content").addEventListener("click", e => e.stopPropagation());
     }
 
-    public static Show(): void {
-        $(InfoOverlay.elem).fadeIn(300);
-        InfoOverlay.is_active = true;
+    public Show(): void {
+        $(this.elem).fadeIn(300);
     }
 
-    public static Hide(): void {
-        $(InfoOverlay.elem).fadeOut(300);
-        InfoOverlay.is_active = false;
+    public Exit(): void {
+        $(this.elem).fadeOut(300);
     }
 
-    public static setContent(content: string): void {
-        InfoOverlay.content = content;
+    public setContent(content: string): void {
         document.getElementById("info-overlay-content").innerHTML = content;
-        $("#info-overlay-content").append(InfoOverlay.exit_button);
+        $("#info-overlay-content").append(this.exit_button);
     }
 }

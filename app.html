@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Casual Pokémon Teambuilder</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Sam Cunion">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plan a balanced and fun Pokémon team for your casual playthrough!" />
+    <meta name="application-name" content="Casual Pokémon Teambuilder" />
+    <link rel="icon" href="/public/img/icon/favicon.ico" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="public/css/style.css" />
+</head>
+
+<body>
+    <div id="page-app" class="page">
+        <div id="app">
+            <div id="team-display-container" class="">
+                <div class="pokemon-display-container">
+                    <div class="pokemon-sprite-container" id="team-1">
+                        <img class="pokeball-sprite" src="public/img/sprite/ball.png" />
+                        <div class="route-select-button" data-slot="0">
+                            <img class="route-select-sprite" src="public/img/sprite/expand.png" />
+                        </div>
+                    </div>
+                </div>
+                <div class="pokemon-display-container">
+                    <div class="pokemon-sprite-container" id="team-2">
+                        <img class="pokeball-sprite" src="public/img/sprite/ball.png" />
+                        <div class="route-select-button" data-slot="1">
+                            <img class="route-select-sprite" src="public/img/sprite/expand.png" />
+                        </div>
+                    </div>
+                </div>
+                <div class="pokemon-display-container">
+                    <div class="pokemon-sprite-container" id="team-3">
+                        <img class="pokeball-sprite" src="public/img/sprite/ball.png" />
+                        <div class="route-select-button" data-slot="2">
+                            <img class="route-select-sprite" src="public/img/sprite/expand.png" />
+                        </div>
+                    </div>
+                </div>
+                <div class="pokemon-display-container">
+                    <div class="pokemon-sprite-container" id="team-4">
+                        <img class="pokeball-sprite" src="public/img/sprite/ball.png" />
+                        <div class="route-select-button" data-slot="3">
+                            <img class="route-select-sprite" src="public/img/sprite/expand.png" />
+                        </div>
+                    </div>
+                </div>
+                <div class="pokemon-display-container">
+                    <div class="pokemon-sprite-container" id="team-5">
+                        <img class="pokeball-sprite" src="public/img/sprite/ball.png" />
+                        <div class="route-select-button" data-slot="4">
+                            <img class="route-select-sprite" src="public/img/sprite/expand.png" />
+                        </div>
+                    </div>
+                </div>
+                <div class="pokemon-display-container">
+                    <div class="pokemon-sprite-container" id="team-6">
+                        <img class="pokeball-sprite" src="public/img/sprite/ball.png" />
+                        <div class="route-select-button" data-slot="5">
+                            <img class="route-select-sprite" src="public/img/sprite/expand.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="main-content-container">
+                <div id="header-container" class="d-flex justify-content-around align-items-center">
+                    <div id="back-button" class="app-styled-button"><img src="public/img/sprite/back.png" /></div>
+                    <input type="text" placeholder="Search Pokémon..." id="pokemon-search" />
+                    <h1>Casual Pokémon Teambuilder</h1>
+                    <button id="generate-infographic-button"
+                        class="app-styled-button">Generate<br />Infographic</button>
+                </div>
+                <div id="pokemon-view">
+                    <div id="pokemon-list" class="d-flex flex-wrap">
+
+                </div>
+            </div>
+            <div id="options-container" class="text-center">
+                <h3 class="mt-5">Legendaries</h3>
+                <div id="legendary-options" class="form-check form-switch justify-content-around d-flex p-0">
+                    <label for="legendary-switch">Enable Legendaries</label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="legendary-switch" />
+                </div>
+                <h3 class="mt-5">Mythics</h3>
+                <div id="mythic-options" class="form-check form-switch justify-content-around d-flex p-0">
+                    <label for="mythic-switch">Enable Mythics</label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="mythic-switch" />
+                </div>
+                <h3 class="mt-5">Randomise</h3>
+                <div id="randomise-options" class="form-check form-switch justify-content-around d-flex p-0">
+                    <label for="randomise-switch">Randomise - Empty/All</label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="randomise-switch" />
+                </div>
+                <br />
+                <button class="app-styled-button" id="randomise-button">Randomise</button>
+                <h3 class="mt-5">Pokémon Suggestion</h3>
+                <div id="suggest-options" class="form-check form-switch justify-content-around d-flex flex-wrap p-0">
+                    <label for="suggest-switch">Suggest One/Empty</label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="suggest-switch" />
+                </div>
+                <br />
+                <button class="app-styled-button" id="suggest-button">Suggest Pokemon</button>
+
+            </div>
+            <div id="typechart-container" class="d-flex justify-content-around align-items-center">
+                <table class="typechart-table">
+                    <thead>
+                        <td>✓</td>
+                        <td>Type</td>
+                        <td>Counters</td>
+                        <td>Resists</td>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="t-i-1"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator d-flex" id="indicator-1"></div>
+                            </td>
+                            <td id="t-n-1"><img class="type-sprite" src="public/img/sprite/type-1.png" /></td>
+                            <td id="t-o-1">0</td>
+                            <td id="t-d-1">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-2"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-2"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-2.png" /></td>
+                            <td id="t-o-2">0</td>
+                            <td id="t-d-2">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-3"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-3"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-3.png" /></td>
+                            <td id="t-o-3">0</td>
+                            <td id="t-d-3">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-4"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-4"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-4.png" /></td>
+                            <td id="t-o-4">0</td>
+                            <td id="t-d-4">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-5"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-5"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-5.png" /></td>
+                            <td id="t-o-5">0</td>
+                            <td id="t-d-5">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-6"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-6"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-6.png" /></td>
+                            <td id="t-o-6">0</td>
+                            <td id="t-d-6">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="typechart-table">
+                    <thead>
+                        <td>✓</td>
+                        <td>Type</td>
+                        <td>Counters</td>
+                        <td>Resists</td>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="t-i-7"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-7"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-7.png" /></td>
+                            <td id="t-o-7">0</td>
+                            <td id="t-d-7">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-8"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-8"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-8.png" /></td>
+                            <td id="t-o-8">0</td>
+                            <td id="t-d-8">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-9"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-9"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-9.png" /></td>
+                            <td id="t-o-9">0</td>
+                            <td id="t-d-9">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-10"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-10"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-10.png" /></td>
+                            <td id="t-o-10">0</td>
+                            <td id="t-d-10">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-11"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-11"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-11.png" /></td>
+                            <td id="t-o-11">0</td>
+                            <td id="t-d-11">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-12"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-12"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-12.png" /></td>
+                            <td id="t-o-12">0</td>
+                            <td id="t-d-12">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="typechart-table">
+                    <thead>
+                        <td>✓</td>
+                        <td>Type</td>
+                        <td>Counters</td>
+                        <td>Resists</td>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="t-i-13"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-13"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-13.png" /></td>
+                            <td id="t-o-13">0</td>
+                            <td id="t-d-13">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-14"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-14"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-14.png" /></td>
+                            <td id="t-o-14">0</td>
+                            <td id="t-d-14">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-15"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-15"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-15.png" /></td>
+                            <td id="t-o-15">0</td>
+                            <td id="t-d-15">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-16"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-16"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-16.png" /></td>
+                            <td id="t-o-16">0</td>
+                            <td id="t-d-16">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-17"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-17"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-17.png" /></td>
+                            <td id="t-o-17">0</td>
+                            <td id="t-d-17">0</td>
+                        </tr>
+                        <tr>
+                            <td id="t-i-18"
+                                class="type-indicator-container d-flex justify-content-center align-items-center">
+                                <div class="type-indicator" id="indicator-18"></div>
+                            </td>
+                            <td><img class="type-sprite" src="public/img/sprite/type-18.png" /></td>
+                            <td id="t-o-18">0</td>
+                            <td id="t-d-18">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <h3>Overall:</h3>
+                    <h1 id="typechart-result">Okay</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer id="credits-bar" class="bg-primary bg-gradient border-top border-4 border-primary">
+        <div id="name-credit">
+            <p class="ps-3 pt-2 text-light float-start">Made by Sam Cunion</p>
+        </div>
+        <div id="credit-expand-button" class="float-end h-100 me-3">
+            <p class="text-light pt-2 float-start">Credits:</p>
+            <button class="btn btn-outline-light float-end ms-3 top-50" id="expand-credits">...</button>
+        </div>
+    </footer>
+    <div id="info-overlay">
+        <div id="info-overlay-content"></div>
+    </div>
+    <script type="text/javascript" src="/public/js/app.bundle.js"></script>
+</body>
+
+</html>
