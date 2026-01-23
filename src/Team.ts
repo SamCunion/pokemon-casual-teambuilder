@@ -85,7 +85,7 @@ export default class Team {
         elem.on("click", e => {
             this.clearSlot(index);
         })
-        elem.appendTo(`#team-${index + 1}`);
+        elem.appendTo(`#team-${index + 1} .pokemon-sprite-container`);
         let coverage = this.calculateTeamCoverage();
         this.updateTypeBreakdownView(coverage);
     }

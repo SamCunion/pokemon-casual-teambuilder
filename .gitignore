@@ -1,3 +1,4 @@
 node_modules
 .next
 plan
+tools/gif_downloader/gifs

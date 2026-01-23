@@ -23,7 +23,7 @@ $(() => {
     function populateGameList(game_objects) {
         for (let i = 0; i < game_objects.length; i++) {
             let game = game_objects[i];
-            let elem = $(`<div class="game-option" data-gamename="${game.name}"><img src="/pokemon-teambuilder/public/img/game-art/${game.img}" class="mx-auto" /></div>`);
+            let elem = $(`<div class="game-option m-3" data-gamename="${game.name}"><img src="/pokemon-teambuilder/public/img/game-art/${game.img}" class="mx-auto" /></div>`);
             $(elem).on("click", () => {
                 location.href = "?game=" + game.id;
             })
