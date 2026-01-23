@@ -27,11 +27,14 @@ export default class App {
 
     constructor(game: Game) {
         this.game = game;
+        console.log(game);
     }
 
     public Init() {
         //get list of pokemon for the game
-        $.getJSON("/database/pokemon/" + this.game.id, (pkmn_objects: Array<PokemonData>) => {
+        $.getJSON("/pokemon-teambuilder/database/pokemon/" + this.game.id, (pkmn_objects: Array<PokemonData>) => {
+            //set page title
+            $("#page-title").html(this.game.name);
 
             //create team object
             this.team = new Team(this.game);
@@ -40,7 +43,7 @@ export default class App {
             for (let po of pkmn_objects) {
                 let pokemon_obj = new Pokemon(po);
                 let div = $(`<div class="pokemon-thumb-container d-flex ${po.is_legendary ? "legendary" : ""} ${po.is_mythic ? "mythic" : ""}" data-pkmn_id=${po.id} data-pkmn_name="${po.name}"></div>`);
-                let img = $(`<img src="/public/img/pokemon-sprites/gifs/${po.name}.gif" />`);
+                let img = $(`<img src="/pokemon-teambuilder/public/img/pokemon-sprites/gifs/${po.name}.gif" />`);
 
 
                 div.append(img);
@@ -102,7 +105,7 @@ export default class App {
 
         //back button
         $("#back-button").on("click", e => {
-            location.href = "/";
+            location.href = "/pokemon-teambuilder";
         })
 
         //route selector butttons

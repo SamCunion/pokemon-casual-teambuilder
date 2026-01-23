@@ -4,8 +4,13 @@ const fs = require("fs");
 const app = express();
 const port = 3000;
 
+const SWITCH_GAME_DEXES = {
+    "37": "12", //brilliant diamond -> diamond
+    "38": "13" //shining pearl -> pearl
+}
+
 //default path, gets the catalogue page
-app.get("/", (req, res) => {
+app.get("/pokemon-teambuilder", (req, res) => {
     if (req.query.game) { //game query param provided, send main app
         res.sendFile(path.resolve(__dirname, "app.html"));
     }
@@ -15,7 +20,7 @@ app.get("/", (req, res) => {
 })
 
 //gets all games in an array
-app.get("/database/games", (req, res) => {
+app.get("/pokemon-teambuilder/database/games", (req, res) => {
     res.setHeader("Content-Type", "application/json");
     fs.readFile(path.join(__dirname, "/database/games.json"), (e, data) => {
         if (e) {
@@ -28,7 +33,7 @@ app.get("/database/games", (req, res) => {
 })
 
 //gets the data for the single specified game
-app.get("/database/games/:game", (req, res) => {
+app.get("/pokemon-teambuilder/database/games/:game", (req, res) => {
     const game = Number(req.params["game"]);
     if (isNaN(game) || game < 1) {
         res.send("Invalid request");
@@ -53,7 +58,7 @@ app.get("/database/games/:game", (req, res) => {
     })
 })
 
-app.get("/database/pokemon/:game", (req, res) => {
+app.get("/pokemon-teambuilder/database/pokemon/:game", (req, res) => {
     res.setHeader("Content-Type", "application/json");
     const game = Number(req.params["game"]);
     if (isNaN(game) || game < 1) {
@@ -67,7 +72,14 @@ app.get("/database/pokemon/:game", (req, res) => {
             return;
         }
         const game_versions = JSON.parse(data);
-        const game_pokemon = game_versions[game];
+        //use another games dex if instructed to
+        let game_pokemon;
+        if (SWITCH_GAME_DEXES[game]) {
+            game_pokemon = game_versions[SWITCH_GAME_DEXES[game]];
+        }
+        else {
+            game_pokemon = game_versions[game];
+        }
         const out = [];
         fs.readFile(path.join(__dirname, "/database/pokemon.json"), (e, data) => {
             if (e) {
@@ -87,7 +99,7 @@ app.get("/database/pokemon/:game", (req, res) => {
     })
 })
 
-app.use("/public", express.static("public"));
+app.use("/pokemon-teambuilder/public", express.static("public"));
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);

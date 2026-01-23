@@ -8,7 +8,7 @@ function main() {
     //get game id from url
     const url_params = new URLSearchParams(window.location.search);
     const gameID = url_params.get("game");
-    $.getJSON("/database/games/" + gameID, (data) => {
+    $.getJSON("/pokemon-teambuilder/database/games/" + gameID, (data) => {
         const app = new App(data);
         app.Init();
     })

@@ -24,9 +24,14 @@ export default class Team {
     public activateRouteSelector(index: number) {
         let slot = this.slots[index];
         if (slot.pokemon) {
-            const url_params = new URLSearchParams(window.location.search);
-            const gameID = url_params.get("game");
-            let selector = new LocationSelector(slot.pokemon.locations[gameID], slot.location, (newLocation: string|null) => {
+            let gameID = this.game.id;
+            let locations = slot.pokemon.locations[gameID]
+            //if use_dex is set, use both games dex instead
+            if (this.game.use_dex) {
+                gameID = this.game.use_dex;
+                locations = _.compact(_.concat(locations, slot.pokemon.locations[this.game.use_dex]));
+            }
+            let selector = new LocationSelector(locations, slot.location, (newLocation: string|null) => {
                 if (newLocation != null) {
                     slot.location = newLocation;
                 }
@@ -76,7 +81,7 @@ export default class Team {
         this.slots[index].location = "";
 
         //update DOM
-        let elem = $(`<img class="pokemon-team-sprite" id="pokemon-sprite-${index}" src="/public/img/pokemon-sprites/gifs/${pokemon.name}.gif" />`);
+        let elem = $(`<img class="pokemon-team-sprite" id="pokemon-sprite-${index}" src="/pokemon-teambuilder/public/img/pokemon-sprites/gifs/${pokemon.name}.gif" />`);
         elem.on("click", e => {
             this.clearSlot(index);
         })
