@@ -18,10 +18,10 @@ export default {
         </div>
     `,
     route_select: `
-        <div class="text-center" id="route-select-container" style="height: 95%">
+        <div class="text-center" id="route-select-container">
             <h3>Select Route:</h3>
             <p id="route-warning-text" class="text-danger"></p>
-            <div id="route-select-list-container" class="d-inline-block" >
+            <div id="route-select-list-container" >
 
             </div>
         </div>

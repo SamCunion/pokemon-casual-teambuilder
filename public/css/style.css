@@ -10,6 +10,9 @@ body {
     flex-direction: column;
     background-color: white;
 }
+html {
+    height: 100%;
+}
 
 img, label {
     -webkit-user-select: none;
@@ -62,7 +65,7 @@ img, label {
     display: none;
 }
 
-/*app desktop site styles*/
+/*desktop*/
 
 @media (min-width: 600px) {
 
@@ -136,12 +139,14 @@ img, label {
     }
 
     #options-container {
-        float: right;
         height: 100%;
         min-width: min-content;
         max-width: max-content;
         width: 10000px;
         border-left: 3px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
     }
     #options-container h3 {
         padding-left: 10px;
@@ -197,13 +202,6 @@ img, label {
         margin-left: -5%;
     }
 
-    #route-select-list-container {
-        margin-top: 5%;
-        width: 50%;
-        height: 75%;
-        min-width: 400px;
-    }
-
     .app-styled-button {
         background-color: white
             /*rgb(13,110,253)*/
@@ -247,16 +245,13 @@ img, label {
         min-height: 55px;
         height: 90%;
     }
-
     #pokemon-search {
         width: 25%;
         font-size: 2em;
     }
-
     #pokemon-list {
         overflow-y: scroll;
         gap: 0px;
-        
     }
 
     .pokemon-thumb-container {
@@ -322,19 +317,293 @@ img, label {
         height: 100%;
     }
 
-
+    #route-select-container {
+        display: flex;
+        flex-direction: column; 
+        height: 100%;
+        max-height: 100%;
+    }
     #route-select-list-container {
         background-color: #dcdcdc;
         border: 1px solid black;
         overflow-y: scroll;
+        width: 50%;
+        height: 70vh;
+        margin: auto;
+        min-width: 400px;
     }
 
     .location-item {
-        height: 10%;
+        height: calc(100% / 8);
+        font-size: 1.5em;
         cursor: pointer;
         flex: none;
         -webkit-user-select: none;
         user-select: none;
         -moz-user-select: none;
     }
+}
+
+/* Mobile */
+@media (max-width: 599px) {
+    /* Remove these from mobile view */
+    #back-button, #page-title, #options-container div h3, #info-overlay-close {
+        display: none;
+    }
+
+    .app-styled-button {
+        background-color: white; /*rgb(13,110,253)*/
+        border: .2em solid rgb(125, 0, 0);
+        border-radius: .4em;
+        cursor: pointer;
+        -moz-transition: all .1s ease-in;
+        -webkit-transition: all .1s ease-in;
+        -o-transition: all .1s ease-in;
+        transition: all .1s ease-in;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+    .app-styled-button:hover {
+        background-color: #f0c4c8;
+    }
+
+    /* infographics */
+    #info-overlay {
+        z-index: 100;
+        background-color: rgba(0, 0, 0, 0.8);
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        animation: fadeInAnimation .3s;
+        display: none;
+    }
+    #info-overlay-content {
+        background-color: #1e1b1b;
+        border: 3px solid rgb(125, 0, 0);
+        width: 40vw;
+        min-width: 400px;
+        height: 80vh;
+        margin: auto;
+        margin-top: 10vh;
+        border-radius: 20px;
+        color: white;
+    }
+    #infographic-canvas {
+        max-width: 500px;
+        width: 100%;
+    }
+    #route-select-container {
+        display: flex;
+        flex-direction: column; 
+        height: 100%;
+        max-height: 100%;
+    }
+    #route-select-list-container {
+        background-color: #1e1b1b;
+        overflow-y: scroll;
+        width: 50%;
+        height: 70vh;
+        margin: auto;
+        min-width: 350px;
+    }
+
+    .location-item {
+        background-color: #1e1b1b;
+        color: white;
+        height: calc(100% / 8);
+        font-size: 1.5em;
+        cursor: pointer;
+        flex: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -moz-user-select: none;
+    }
+
+    /* team display */
+    #team-display-container {
+        background-color: #1e1b1b;
+        height: 20%;
+        max-height: 20vh;
+        border-bottom: 3px solid rgb(125, 0, 0);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .pokemon-slot {
+        width: calc(100% / 3.5);
+        display: flex;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 5px;
+        max-height: 10vh;
+    }
+    .pokemon-sprite-container {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        height: 100%;
+        width: 100%;
+        aspect-ratio: 1/1;
+    }
+    .pokeball-sprite {
+        aspect-ratio: 1/1;
+        z-index: 10;
+        height: 100%;
+        position: absolute;
+    }
+
+    .pokemon-team-sprite {
+        z-index: 11;
+        max-height: 80%;
+        max-width: 80%;
+        margin: auto;
+        cursor: pointer;
+    }
+    .route-select-button {
+        cursor: pointer;
+        margin-top: auto;
+        margin-bottom: auto;
+        z-index: 9;
+        margin-left: -25px;
+    }
+
+    /* header */
+    #header-container {
+        background-color: #1e1b1b;
+        height: 10%;
+        border-bottom: 3px solid rgb(125, 0, 0);
+        width: 100%;
+        position: relative;
+        display: flex;
+    }
+    #pokemon-search {
+        width: 75%;
+        height: 100%;
+        font-size: 2em;
+        padding: 0;
+        border: 0;
+        display: block;
+    }
+    #generate-infographic-button {
+        display: block;
+        height: 100%;
+        width: 25%;
+        border: 0;
+        border-left: 3px solid rgb(125, 0, 0);
+        border-right: 3px solid rgb(125, 0, 0);
+        border-radius: 0;
+    }
+
+    /* Pokemon list */
+    #pokemon-list {
+        background-color: rgb(125, 0, 0);
+        overflow-y: scroll;
+        gap: 0px;
+        height: 33vh;
+        justify-content: start;
+        align-content: flex-start;
+    }
+    .pokemon-thumb-container {
+        aspect-ratio: 1/1;
+        width: calc(100% / 5);
+        border: 1px solid black;
+        cursor: pointer;
+    }
+    .pokemon-thumb-container img {
+        margin: auto;
+    }
+
+    /* coverage */
+    #typechart-container {
+        height: 20%;
+        border-top: 3px solid rgb(125, 0, 0);
+        max-height: 200px;
+        overflow-x: scroll;
+        background-color: #1e1b1b;
+    }
+    #typechart-container div {
+        order: 0;
+        color: white;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    #typechart-result {
+        text-align: center;
+    }
+
+    .typechart-table {
+        order: 1;
+        margin-bottom: 2px;
+        color: white;
+        height: 100%;
+        text-align: center;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .typechart-table thead {
+        border-bottom: 1px solid white;
+    }
+
+    .typechart-table thead td {
+        width: 3vw;
+    }
+
+    .typechart-table tbody tr {
+        border-bottom: 1px solid white;
+        height: 0.1vh
+    }
+
+    .type-sprite {
+        height: 2.5vh;
+        display: block;
+    }
+
+    .type-indicator {
+        height: 2.5vh;
+        width: 2.5vh;
+        display: block;
+        background-color: #3c3636;
+        border: 2px solid rgb(125, 0, 0);
+        border-radius: 100%;
+    }
+
+    .type-indicator-container {
+        height: 100%;
+    }
+
+    /* options */
+    #options-container {
+        background-color: #1e1b1b;
+        color: white;
+        height: 15vh;
+        width: 100%;
+        border-top: 3px solid rgb(125, 0, 0);
+        display: flex;
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
+    #options-container div {
+        min-width: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #options-container div div input {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    #options-container div .app-styled-button {
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: bolder;
+    }
+
 }

@@ -78,7 +78,7 @@
                 <div id="header-container" class="d-flex justify-content-around align-items-center">
                     <div id="back-button" class="app-styled-button"><img
                             src="/pokemon-teambuilder/public/img/sprite/back.png" /></div>
-                    <input type="text" placeholder="Search Pokémon..." id="pokemon-search" />
+                    <input type="text" placeholder="Filter Pokémon..." id="pokemon-search" />
                     <h1 id="page-title"></h1>
                     <button id="generate-infographic-button"
                         class="app-styled-button"><b>Generate<br />Infographic</b></button>
@@ -288,31 +288,38 @@
                         </div>
                     </div>
                     <div id="options-container" class="text-center">
-                        <h3 class="mt-5">Legendaries</h3>
-                        <div id="legendary-options" class="form-check form-switch justify-content-around d-flex p-0">
-                            <label for="legendary-switch">Enable Legendaries</label>
-                            <input class="form-check-input" type="checkbox" role="switch" id="legendary-switch" />
+                        <div>
+                            <h3>Legendaries</h3>
+                            <div id="legendary-options" class="form-check form-switch justify-content-around d-flex p-0">
+                                <label for="legendary-switch">Enable Legendaries</label>
+                                <input class="form-check-input" type="checkbox" role="switch" id="legendary-switch" />
+                            </div>
                         </div>
-                        <h3 class="mt-5">Mythics</h3>
-                        <div id="mythic-options" class="form-check form-switch justify-content-around d-flex p-0">
-                            <label for="mythic-switch">Enable Mythics</label>
-                            <input class="form-check-input" type="checkbox" role="switch" id="mythic-switch" />
+                        <div>
+                            <h3>Mythics</h3>
+                            <div id="mythic-options" class="form-check form-switch justify-content-around d-flex p-0">
+                                <label for="mythic-switch">Enable Mythics</label>
+                                <input class="form-check-input" type="checkbox" role="switch" id="mythic-switch" />
+                            </div>
                         </div>
-                        <h3 class="mt-5">Randomise</h3>
-                        <div id="randomise-options" class="form-check form-switch justify-content-around d-flex p-0">
-                            <label for="randomise-switch">Randomise - Empty/All</label>
-                            <input class="form-check-input" type="checkbox" role="switch" id="randomise-switch" />
+                        <div>
+                            <h3>Randomise</h3>
+                            <div id="randomise-options" class="form-check form-switch justify-content-around d-flex p-0">
+                                <label for="randomise-switch">Randomise - Empty/All</label>
+                                <input class="form-check-input" type="checkbox" role="switch" id="randomise-switch" />
+                            </div>
+                            <br />
+                            <button class="app-styled-button" id="randomise-button">Randomise</button>
                         </div>
-                        <br />
-                        <button class="app-styled-button" id="randomise-button">Randomise</button>
-                        <h3 class="mt-5">Pokémon Suggestion</h3>
-                        <div id="suggest-options" class="form-check form-switch justify-content-around d-flex flex-wrap p-0">
-                            <label for="suggest-switch">Suggest One/Empty</label>
-                            <input class="form-check-input" type="checkbox" role="switch" id="suggest-switch" />
+                        <div>
+                            <h3>Pokémon Suggestion</h3>
+                            <div id="suggest-options" class="form-check form-switch justify-content-around d-flex flex-wrap p-0">
+                                <label for="suggest-switch">Suggest One/Empty</label>
+                                <input class="form-check-input" type="checkbox" role="switch" id="suggest-switch" />
+                            </div>
+                            <br />
+                            <button class="app-styled-button" id="suggest-button">Suggest Pokemon</button>
                         </div>
-                        <br />
-                        <button class="app-styled-button" id="suggest-button">Suggest Pokemon</button>
-                    
                     </div>
                 </div>
             </div>

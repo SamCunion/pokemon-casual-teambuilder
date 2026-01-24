@@ -20,10 +20,12 @@ export default abstract class InfoOverlay {
 
     public Show(): void {
         $(this.elem).fadeIn(300);
+        history.pushState({overlay: true}, "");
     }
 
     public Exit(): void {
         $(this.elem).fadeOut(300);
+        history.back();
     }
 
     public setContent(content: string): void {

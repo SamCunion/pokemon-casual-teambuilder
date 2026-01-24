@@ -84,6 +84,12 @@ export default class App {
 
     private BindEvents() {
 
+        //browser back button, remove info overlay
+        $(window).on("popstate", (e) => {
+            e.preventDefault();
+            $("#info-overlay").fadeOut(300);
+        })
+
         //pokemon searchbox
         $("#pokemon-search").on("input", e => {
             let input_value = (e.target as HTMLInputElement).value;

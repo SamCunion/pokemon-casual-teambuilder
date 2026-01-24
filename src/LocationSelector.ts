@@ -39,7 +39,7 @@ export default class LocationSelector extends InfoOverlay {
             $(`<div class="list-group h-100" id="route-list"></div>`).appendTo("#route-select-list-container");
             for (let i = 0; i < this.options.length; i++) {
                 let location = this.options[i];
-                let item = $(`<a class="location-item list-group-item list-group-item-action align-items-center justify-content-between d-flex ${this.activeLocation == location ? "active" : ""}">${location}</a>`);
+                let item = $(`<a class="location-item list-group-item text-center list-group-item-action align-items-center justify-content-center d-flex ${this.activeLocation == location ? "active" : ""}">${location}</a>`);
                 item.on("click", e => {
                     this.callback(location);
                     this.Exit();

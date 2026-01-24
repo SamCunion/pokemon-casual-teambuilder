@@ -273,6 +273,7 @@ export default class Team {
      * @param coverage coverage of the current team
      */
     private updateTypeBreakdownView(coverage: Coverage) {
+        const colours = ["#ff5454", "#ffa91f", "#8aff54"];
         //loop through all types and update the indicator accordingly
         let total = 0;
         for (let i = 1; i < 19; i++) {
@@ -285,13 +286,13 @@ export default class Team {
             }
             switch (type_strength) {
                 case 0:
-                    $(`#indicator-${i}`).css("background-color", "#ff5454"); //bad coverage
+                    $(`#indicator-${i}`).css("background-color", colours[0]); //bad coverage
                     break;
                 case 0.5:
-                    $(`#indicator-${i}`).css("background-color", "#ffa91f"); //partial coverage
+                    $(`#indicator-${i}`).css("background-color", colours[1]); //partial coverage
                     break;
                 case 1:
-                    $(`#indicator-${i}`).css("background-color", "#8aff54"); //good coverage
+                    $(`#indicator-${i}`).css("background-color", colours[2]); //good coverage
                     break;
             }
             total += type_strength;
@@ -301,13 +302,13 @@ export default class Team {
         }
 
         if (total < 12) {
-            $("#typechart-result").html("Weak"); //overall bad coverage
+            $("#typechart-result").html("Weak").css("color", colours[0]); //overall bad coverage
         }
         else if (total < 16) {
-            $("#typechart-result").html("Okay"); //overall moderate coverage
+            $("#typechart-result").html("Okay").css("color", colours[1]);; //overall moderate coverage
         }
         else {
-            $("#typechart-result").html("Strong"); //overall good coverage
+            $("#typechart-result").html("Strong").css("color", colours[2]);; //overall good coverage
         }
     }
 }
