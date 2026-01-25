@@ -56,7 +56,7 @@ export default class Infographic extends InfoOverlay {
                                     drawRoute(y, location, () => {
                                         let is_last = (i == last_pokemon_index);
                                         drawBorder(y, is_last, this.HEIGHT_PER_POKEMON, this.BORDER_HEIGHT, this.WIDTH, () => {
-                                            console.log("Infographic Generated");
+                                            
                                         })
                                     })
                                 })

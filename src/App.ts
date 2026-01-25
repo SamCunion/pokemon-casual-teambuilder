@@ -18,7 +18,6 @@ export type Game = {
 }
 
 export default class App {
-
     private game: Game;
     private legendaries_enabled = false;
     private mythics_enabled = false;
@@ -35,6 +34,11 @@ export default class App {
         $.getJSON("/pokemon-teambuilder/database/pokemon/" + this.game.id, (pkmn_objects: Array<PokemonData>) => {
             //set page title
             $("#page-title").html(this.game.name);
+
+            //load custom font
+            let font = new FontFace("dp", "url(/pokemon-teambuilder/public/font/dp.woff2)");
+            document.fonts.add(font);
+            font.load();
 
             //create team object
             this.team = new Team(this.game);
@@ -221,6 +225,49 @@ export default class App {
             }
         })
 
+        //hotkeys
+        $(document).on("keydown", (e) => {
+            if ($("#info-overlay").css("display") == "none") {
+                if (e.key === "Tab") {
+                    e.preventDefault();
+                    $("#pokemon-search").val("").trigger("focus").trigger("input");
+                }
+                else if (e.key === "Escape") {
+                    e.preventDefault();
+                    $("#pokemon-search").val("").trigger("blur").trigger("input");
+                }
+                else if (e.key === "Enter") {
+                    e.preventDefault();
+                    $("#generate-infographic-button").trigger("click");
+                }
+                else if (e.key === "r" && !$("#pokemon-search").is(":focus")) {
+                    $("#randomise-button").trigger("click");
+                }
+                else if (e.key === "R" && !$("#pokemon-search").is(":focus")) {
+                    $("#randomise-switch").trigger("click");
+                }
+                else if (e.key === "s" && !$("#pokemon-search").is(":focus")) {
+                    $("#suggest-button").trigger("click");
+                }
+                else if (e.key === "S" && !$("#pokemon-search").is(":focus")) {
+                    $("#suggest-switch").trigger("click");
+                }
+                else if (e.key === "L" && !$("#pokemon-search").is(":focus")) {
+                    $("#legendary-switch").trigger("click");
+                }
+                else if (e.key === "M" && !$("#pokemon-search").is(":focus")) {
+                    $("#mythic-switch").trigger("click");
+                }
+                else if (e.key === "C" && !$("#pokemon-search").is(":focus")) {
+                    for (let i = 0; i < 6; i++) {
+                        this.team.clearSlot(i);
+                    }
+                }
+                else if (e.key !== "Shift") {
+                    $("#pokemon-search").trigger("focus").trigger("input");
+                }
+            }
+        })
     }
 
     /**

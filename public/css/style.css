@@ -70,6 +70,10 @@ img, label {
     display: none;
 }
 
+#expand-credits {
+    color: white;
+}
+
 /*desktop*/
 
 @media (min-width: 600px) {
@@ -106,6 +110,22 @@ img, label {
         bottom: 3vh;
         left: 2vw;
     }
+    #credits-box {
+        overflow-y: scroll;
+        max-height: 100%;
+        max-width: 100%;
+    }
+    #credits-box h1 {
+        text-align: center;
+        margin-top: 30px;
+    }
+    #credits-box p {
+        margin: 20px;
+        font-size: 1.3em;
+    }
+    #credits-box li {
+        font-size: 1.3em;
+    }
 
     .no-scrollbar::-webkit-scrollbar {
         display: initial;
@@ -125,6 +145,7 @@ img, label {
         position: relative;
         justify-content: start;
         max-height: 100%;
+        width: 100%;
     }
 
     #partition-3 {
@@ -133,6 +154,7 @@ img, label {
         justify-content: start;
         max-height: 100%;
         height: 90%;
+        width: 100%;
     }
 
     #partition-4 {
@@ -141,6 +163,7 @@ img, label {
         position: relative;
         justify-content: start;
         max-height: 100%;
+        width: 100%;
     }
 
     #options-container {
@@ -257,6 +280,8 @@ img, label {
     #pokemon-list {
         overflow-y: scroll;
         gap: 0px;
+        height: 100%;
+        align-content: flex-start;
     }
 
     .pokemon-thumb-container {
@@ -416,6 +441,22 @@ img, label {
         height: 70vh;
         margin: auto;
         min-width: 350px;
+    }
+    #credits-box {
+        overflow-y: scroll;
+        max-height: 100%;
+        max-width: 100%;
+    }
+    #credits-box h1 {
+        text-align: center;
+        margin-top: 30px;
+    }
+    #credits-box p {
+        margin: 20px;
+        font-size: 1.3em;
+    }
+    #credits-box li {
+        font-size: 1.3em;
     }
 
     .location-item {
