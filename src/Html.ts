@@ -23,6 +23,7 @@ export default {
                 <li>Animated sprites - <a target='_blank' rel='noopener noreferrer' href="https://pokemonshowdown.com/">Pokémon Showdown</a></li>
                 <li>Pokémon &copy; - Nintendo/Gamefreak/The Pokémon Company</li>
                 <li>Database - <a target='_blank' rel='noopener noreferrer' href="https://pokeapi.co/">PokéAPI</a></li>
+                <li>Font - <a target='_blank' rel='noopener noreferrer' href="https://fontstruct.com/fontstructions/download/1951915">Pokémon DPPt by aztecwarrior28</a>
             </ul>
         </div>
     `,

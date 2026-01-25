@@ -31,6 +31,20 @@ const path = require("path");
  * ENCOUNTERS.CSV SHOWS LOCATION_AREA_ID, USE LOCATION_AREAS TO MAP TO LOCATION
  */
 
+//map some database pokemon names to their actual names (e.g palafin-zero -> palafin)
+const POKEMON_NAME_MAP = {
+    "palafin-zero": "palafin",
+    "squawkabilly-green-plumage": "squawkabilly",
+    "maushold-family-of-four": "maushold",
+    "oinkologne-male": "oinkologne",
+    "lycanroc-midday": "lycanroc",
+    "dudunsparce-two-segment": "dudunsparce",
+    "tatsugiri-curly": "tatsugiri",
+    "giratina-altered": "giratina",
+    "aegislash-shield": "aegislash",
+    "minior-red-meteor": "minior"
+}
+
 //Load CSV to JSON
 const encounters = csvToObject("encounters");
 const location_areas = csvToObject("location_areas");
@@ -53,6 +67,10 @@ let location_id_to_name = {};
 for (let i = 0; i < pokemon.length; i++) {
     let entry = pokemon[i];
     if (!((entry.identifier.includes("-mega")) || (entry.identifier.includes("-totem")) || (entry.identifier.includes("-gmax")))) {
+        //check if name needs to be mapped
+        if (POKEMON_NAME_MAP[entry.identifier]) {
+            entry.identifier = POKEMON_NAME_MAP[entry.identifier];
+        }
         out_pokemon[entry.id] = {id: entry.id, name: entry.identifier, species: entry.species_id};
 
         //if the pokemon's species doesnt match its ID, its a form
