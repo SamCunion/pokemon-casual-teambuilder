@@ -60,7 +60,6 @@ img, label {
 }
 
 #credits-bar {
-    margin-top: auto;
     font-size: 1em;
     height: 5vh;
     width: 100%;
@@ -76,7 +75,7 @@ img, label {
 
 /*desktop*/
 
-@media (min-width: 600px) {
+@media only screen and (orientation: landscape) {
 
     #site-credit {
         display: block;
@@ -372,15 +371,28 @@ img, label {
         user-select: none;
         -moz-user-select: none;
     }
+
+    #infographic-canvas {
+        width: 60%;
+        max-height: 80%;
+        margin: auto;
+    }
+    #infographic-container {
+        text-align: center;
+    }
+    #save-infographic-btn {
+        width: min-content;
+        margin: auto;
+        font-weight: bolder;
+    }
 }
 
 /* Mobile */
-@media (max-width: 599px) {
+@media only screen and (orientation: portrait) {
     /* Remove these from mobile view */
     #back-button, #page-title, #options-container div h3, #info-overlay-close {
         display: none;
     }
-
     .app-styled-button {
         background-color: white; /*rgb(13,110,253)*/
         border: .2em solid rgb(125, 0, 0);
@@ -414,7 +426,7 @@ img, label {
         background-color: #1e1b1b;
         border: 3px solid rgb(125, 0, 0);
         width: 40vw;
-        min-width: 400px;
+        min-width: 350px;
         height: 80vh;
         margin: auto;
         margin-top: 10vh;
@@ -423,10 +435,18 @@ img, label {
     }
     #infographic-canvas {
         max-width: 500px;
-        width: 100%;
+        max-height: 70%;
+        width: auto;
+        margin: 20px;
+        flex-shrink: 1;
     }
     #infographic-container {
         text-align: center;
+        height: 100%;
+    }
+    #save-infographic-btn {
+        flex-shrink: 0;
+        font-weight: bolder;
     }
     #route-select-container {
         display: flex;
@@ -474,7 +494,7 @@ img, label {
     /* team display */
     #team-display-container {
         background-color: #1e1b1b;
-        height: 20%;
+        height: 20vh;
         max-height: 20vh;
         border-bottom: 3px solid rgb(125, 0, 0);
         display: flex;
@@ -523,7 +543,8 @@ img, label {
     /* header */
     #header-container {
         background-color: #1e1b1b;
-        height: 10%;
+        height: 7vh;
+        max-height: 7vh;
         border-bottom: 3px solid rgb(125, 0, 0);
         width: 100%;
         position: relative;
@@ -552,7 +573,8 @@ img, label {
         background-color: rgb(125, 0, 0);
         overflow-y: scroll;
         gap: 0px;
-        height: 33vh;
+        height: 28vh;
+        max-height: 28vh;
         justify-content: start;
         align-content: flex-start;
     }
@@ -568,10 +590,12 @@ img, label {
 
     /* coverage */
     #typechart-container {
-        height: 20%;
+        height: 25vh;
+        max-height: 25vh;
         border-top: 3px solid rgb(125, 0, 0);
         max-height: 200px;
         overflow-x: scroll;
+        overflow-y: hidden;
         background-color: #1e1b1b;
     }
     #typechart-container div {
@@ -601,11 +625,15 @@ img, label {
 
     .typechart-table thead td {
         width: 3vw;
+        font-size: 0.8em;
     }
 
     .typechart-table tbody tr {
         border-bottom: 1px solid white;
         height: 0.1vh
+    }
+    .typechart-table tbody td {
+        font-size: 0.8em;
     }
 
     .type-sprite {
@@ -631,11 +659,15 @@ img, label {
         background-color: #1e1b1b;
         color: white;
         height: 15vh;
+        max-height: 15vh;
         width: 100%;
         border-top: 3px solid rgb(125, 0, 0);
         display: flex;
         overflow-x: scroll;
         overflow-y: hidden;
+    }
+    #options-container label {
+        font-size: 0.8em;
     }
     #options-container div {
         min-width: 150px;
@@ -653,6 +685,9 @@ img, label {
         margin-left: auto;
         margin-right: auto;
         font-weight: bolder;
+        font-size: 0.8em;
     }
-
+    #credits-bar {
+        bottom: 0;
+    }
 }

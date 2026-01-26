@@ -28,9 +28,10 @@ export default {
         </div>
     `,
     infographic: `
-        <div id="infographic-container" class="d-flex flex-wrap justify-content-center">
-            <p class="mt-3">Save this image to your device so that you can reference it in your playthrough!</p>
-            <canvas id="infographic-canvas" class="" ></canvas>
+        <div id="infographic-container" class="d-flex flex-column justify-content-around">
+            <p>Save this image to your device so that you can reference it in your playthrough!</p>
+            <canvas id="infographic-canvas"></canvas>
+            <button class="app-styled-button btn btn-lg" id="save-infographic-btn">Save</button>
         </div>
     `,
     route_select: `

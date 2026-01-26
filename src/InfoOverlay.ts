@@ -25,7 +25,6 @@ export default abstract class InfoOverlay {
 
     public Exit(): void {
         $(this.elem).fadeOut(300);
-        history.back();
     }
 
     public setContent(content: string): void {

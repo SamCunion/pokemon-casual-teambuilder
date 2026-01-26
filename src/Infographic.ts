@@ -23,6 +23,17 @@ export default class Infographic extends InfoOverlay {
         super.setContent(Html.infographic);
         super.Show();
         this.Populate(($("#infographic-canvas")[0] as HTMLCanvasElement));
+
+        $("#save-infographic-btn").on("click", () => {
+            console.log("making infographic")
+            const cvs = document.querySelector("#infographic-canvas") as HTMLCanvasElement;
+            const img = cvs.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            const e = document.createElement("a");
+            const filename = "infographic.png";
+            e.setAttribute("href", img);
+            e.setAttribute("download", filename);
+            e.click();
+        })
     }
 
     private Populate(canvas: HTMLCanvasElement) {
