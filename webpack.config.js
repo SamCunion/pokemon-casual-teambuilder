@@ -16,7 +16,7 @@ module.exports = {
             }
         }]
     },
-    mode: "development",
+    mode: "production",
     watch: true,
     resolve: {
         extensions: [".ts", ".js"],

@@ -29,7 +29,7 @@ export default class Team {
             //if use_dex is set, use both games dex instead
             if (this.game.use_dex) {
                 gameID = this.game.use_dex;
-                locations = _.compact(_.concat(locations, slot.pokemon.locations[this.game.use_dex]));
+                locations = _.union(_.concat(locations, slot.pokemon.locations[this.game.use_dex]));
             }
             let selector = new LocationSelector(locations, slot.location, (newLocation: string|null) => {
                 if (newLocation != null) {

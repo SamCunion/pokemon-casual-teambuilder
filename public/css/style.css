@@ -63,6 +63,8 @@ img, label {
     font-size: 1em;
     height: 5vh;
     width: 100%;
+    position: fixed;
+    bottom: 0;
 }
 
 #site-credit {
@@ -689,5 +691,6 @@ img, label {
     }
     #credits-bar {
         bottom: 0;
+        position: fixed;
     }
 }

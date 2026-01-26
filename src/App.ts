@@ -74,6 +74,7 @@ export default class App {
 
                 $(div).on("click", () => {
                     this.handleListPokemonClick(pokemon_obj);
+                    $("#pokemon-search").val("").trigger("input");
                 })
 
                 $("#pokemon-list").append(div);
