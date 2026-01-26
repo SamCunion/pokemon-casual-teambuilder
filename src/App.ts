@@ -99,7 +99,7 @@ export default class App {
             let input_value = (e.target as HTMLInputElement).value;
             $(".pokemon-thumb-container").each((i, v) => {
                 let item_name = v.dataset["pkmn_name"];
-                if (!item_name.includes(input_value)) {
+                if (!item_name.includes(input_value.toLowerCase())) {
                     $(v).hide();
                     $(v).removeClass("d-flex");
                 }
