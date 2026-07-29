@@ -31,10 +31,13 @@ export default class App {
 
     public Init() {
         //get list of pokemon for the game
-        $.getJSON("/database/version_pokemon.json", (version_pokemon) => {
-
-            let version_ids = version_pokemon[this.game.id];
-            $.getJSON("/database/pokemon.json", (pkmn_raw_obj) => {
+        $.getJSON("./database/version_pokemon.json", (version_pokemon) => {
+            let dexid = this.game.id;
+            if (this.game.use_dex) {
+                dexid = this.game.use_dex;
+            }
+            let version_ids = version_pokemon[dexid];
+            $.getJSON("./database/pokemon.json", (pkmn_raw_obj) => {
                 let pkmn_objects = [];
                 for (let pkmn_id of version_ids) {
                     if (pkmn_raw_obj[pkmn_id]) {
