@@ -130,7 +130,7 @@ export default class App {
 
         //back button
         $("#back-button").on("click", e => {
-            location.href = "/index.html";
+            location.href = "./index.html";
         })
 
         //route selector butttons
