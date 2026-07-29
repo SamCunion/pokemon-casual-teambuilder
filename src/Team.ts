@@ -4,7 +4,7 @@ import Pokemon from "./Pokemon";
 import _ from "lodash";
 
 type Slot = {
-    pokemon: Pokemon;
+    pokemon: Pokemon|null;
     location: string;
 }
 
@@ -81,7 +81,7 @@ export default class Team {
         this.slots[index].location = "";
 
         //update DOM
-        let elem = $(`<img class="pokemon-team-sprite" id="pokemon-sprite-${index}" src="/pokemon-teambuilder/public/img/pokemon-sprites/gifs/${pokemon.name}.gif" />`);
+        let elem = $(`<img class="pokemon-team-sprite" id="pokemon-sprite-${index}" src="/public/img/pokemon-sprites/gifs/${pokemon.name}.gif" />`);
         elem.on("click", e => {
             this.clearSlot(index);
         })
@@ -113,7 +113,7 @@ export default class Team {
     public getPokemon(): Array<Pokemon> {
         let out = [];
         for (let s of this.slots) {
-            out.push(s.pokemon);
+            out.push(s.pokemon!);
         }
         return out;
     }
@@ -136,7 +136,7 @@ export default class Team {
         const starter_ids = this.game.starters;
 
         for (let i = 0; i < this.slots.length; i++) {
-            if (this.slots[i].pokemon && starter_ids.includes(this.slots[i].pokemon.id.toString())) {
+            if (this.slots[i].pokemon && starter_ids.includes(this.slots[i].pokemon!.id.toString())) {
                 return true;
             }
         }
@@ -214,7 +214,7 @@ export default class Team {
 
         if (sorted_pokemon.length > 5) { //if there are more than 5 pokemon in consideration, sample from the best 5
             let suggested_pokemon = sorted_pokemon.slice(0, 5);
-            return _.sample(suggested_pokemon);
+            return _.sample(suggested_pokemon)!;
         }
         //if there are less than 5 pokemon in consideration, pick the best one (probably just the starters)
         return sorted_pokemon[0];
@@ -231,10 +231,10 @@ export default class Team {
         for (let i = 0; i < this.slots.length; i++) {
             if (this.slots[i].pokemon) {
                 let pokemon = this.slots[i].pokemon;
-                let types = pokemon.types;
-                if (pokemon.past_types && Number(this.game.generation) <= Number(pokemon.past_types.last_generation)) {
+                let types = pokemon!.types;
+                if (pokemon!.past_types && Number(this.game.generation) <= Number(pokemon!.past_types.last_generation)) {
                     console.log("updated types used");
-                    types = pokemon.past_types.types;
+                    types = pokemon!.past_types.types;
                 }
                 let type_ids = [];
                 let accumulated_effacy_def = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];

@@ -1,7 +1,8 @@
 $(() => {
     //get games object
     let game_elems = [];
-    $.getJSON("/pokemon-teambuilder/database/games", (data) => {
+    $.getJSON("/database/games.json", (data) => {
+        console.log(data);
         populateGameList(data);
 
         $("#game-search").on("input", ({ target }) => {
@@ -23,9 +24,9 @@ $(() => {
     function populateGameList(game_objects) {
         for (let i = 0; i < game_objects.length; i++) {
             let game = game_objects[i];
-            let elem = $(`<div class="game-option m-3" data-gamename="${game.name}"><img src="/pokemon-teambuilder/public/img/game-art/${game.img}" class="mx-auto" /></div>`);
+            let elem = $(`<div class="game-option m-3" data-gamename="${game.name}"><img src="/public/img/game-art/${game.img}" class="mx-auto" /></div>`);
             $(elem).on("click", () => {
-                location.href = "?game=" + game.id;
+                location.href = "/app.html?game=" + game.id;
             })
             $("#game-list").append(elem);
             game_elems.push(elem);

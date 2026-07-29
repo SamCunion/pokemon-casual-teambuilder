@@ -1,15 +1,16 @@
 {
     "compilerOptions": {
-        "outDir": "./public/",
+        "outDir": "/docs/public/js/",
+        "rootDir": ".",
         "noImplicitAny": true,
-        "module": "ES2020",
-        "target": "es5",
+        "module": "node20",
+        "target": "es2025",
         "jsx": "react",
         "allowJs": true,
-        "moduleResolution": "node",
+        "moduleResolution": "nodenext",
         "resolveJsonModule": true,
         "esModuleInterop": true,
-        "lib": ["DOM", "ES2020", "DOM.Iterable"]
+        "types": ["jquery"]
     },
     "include": [
         "./src/*.ts"

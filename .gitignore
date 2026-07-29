@@ -1,4 +1,4 @@
-node_modules
+/node_modules
 .next
-plan
-tools/gif_downloader/gifs
+/plan
+/tools/gif_downloader/gifs

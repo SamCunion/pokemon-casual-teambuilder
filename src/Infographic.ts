@@ -85,25 +85,25 @@ export default class Infographic extends InfoOverlay {
             let bg_elem = document.createElement("img");
             let type_id = types[pokemon.types[0]];
             bg_elem.onload = () => {
-                canvas.getContext("2d").drawImage(bg_elem, 0, starting_y, WIDTH, HEIGHT_PER_POKEMON);
+                canvas.getContext("2d")!.drawImage(bg_elem, 0, starting_y, WIDTH, HEIGHT_PER_POKEMON);
                 c();
             }
-            bg_elem.src = `/pokemon-teambuilder/public/img/sprite/bg-type-${type_id}.png`;
+            bg_elem.src = `/public/img/sprite/bg-type-${type_id}.png`;
         }
         
         async function drawPokeball(starting_y : number, c: Function) {
             let sprite = document.getElementsByClassName("pokeball-sprite")[0] as HTMLImageElement;
-            canvas.getContext("2d").drawImage(sprite, 25, 5 + starting_y, 80, 80);
+            canvas.getContext("2d")!.drawImage(sprite, 25, 5 + starting_y, 80, 80);
             c();
         }
 
         async function drawSprite(starting_y: number, i: number, c: Function) {
-            canvas.getContext("2d").drawImage(document.getElementById(`pokemon-sprite-${i}`) as HTMLImageElement, 35, 15 + starting_y, 60, 60);
+            canvas.getContext("2d")!.drawImage(document.getElementById(`pokemon-sprite-${i}`) as HTMLImageElement, 35, 15 + starting_y, 60, 60);
             c();
         }
 
         async function drawTypes(starting_y: number, generation: number, p: Pokemon, c: Function) {
-            let ctx = canvas.getContext("2d");
+            let ctx = canvas.getContext("2d")!;
             let pokemon_types = p.types;
             if (p.past_types && generation <= Number(p.past_types.last_generation)) {
                 pokemon_types = p.past_types.types;
@@ -126,7 +126,7 @@ export default class Infographic extends InfoOverlay {
         }
 
         async function drawName(starting_y: number, p: Pokemon, c: Function) {
-            let ctx = canvas.getContext("2d");
+            let ctx = canvas.getContext("2d")!;
             let name = p.name[0].toUpperCase() + p.name.substring(1, p.name.length);
             ctx.font = "bold 40px dp";
             let text_width = Math.round(ctx.measureText(p.name).width);
@@ -141,7 +141,7 @@ export default class Infographic extends InfoOverlay {
 
         async function drawRoute(starting_y: number, location: string, c: Function) {
             if (location) {
-                let ctx = canvas.getContext("2d");
+                let ctx = canvas.getContext("2d")!;
                 ctx.font = "30px dp";
                 let text_width = Math.round(ctx.measureText(location).width);
                 if (text_width > 300) {
@@ -154,7 +154,7 @@ export default class Infographic extends InfoOverlay {
 
         async function drawBorder(starting_y: number, is_last: boolean, HEIGHT_PER_POKEMON: number, BORDER_HEIGHT: number, WIDTH: number,  c: Function) {
             if (!is_last) {
-                let ctx = canvas.getContext("2d");
+                let ctx = canvas.getContext("2d")!;
                 ctx.strokeStyle = "black";
                 ctx.lineWidth = BORDER_HEIGHT;
                 ctx.beginPath();

@@ -15,7 +15,7 @@ export default abstract class InfoOverlay {
             this.Exit();
         })
 
-        document.getElementById("info-overlay-content").addEventListener("click", e => e.stopPropagation());
+        document.getElementById("info-overlay-content")!.addEventListener("click", e => e.stopPropagation());
     }
 
     public Show(): void {
@@ -28,7 +28,7 @@ export default abstract class InfoOverlay {
     }
 
     public setContent(content: string): void {
-        document.getElementById("info-overlay-content").innerHTML = content;
+        document.getElementById("info-overlay-content")!.innerHTML = content;
         $("#info-overlay-content").append(this.exit_button);
     }
 }

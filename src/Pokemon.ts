@@ -26,10 +26,10 @@ export default class Pokemon {
     public stat_total: number;
     public locations: Record<string, Array<string>>;
     public types: Array<string>;
-    public past_types?: PastType;
+    public past_types: PastType|null;
     public is_in_party: boolean = false;
     public teammate_score: number = 0;
-    private list_elem: HTMLDivElement = null;
+    private list_elem: HTMLDivElement|null = null;
 
     constructor(po: PokemonData) {
         this.id = Number(po.id);
@@ -46,7 +46,7 @@ export default class Pokemon {
         this.list_elem = e;
     }
     public getListElem() : HTMLDivElement {
-        return this.list_elem;
+        return this.list_elem!;
     }
     public removeListElem() {
         this.list_elem = null;
