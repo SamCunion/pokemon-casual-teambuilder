@@ -46,7 +46,7 @@ export default class App {
                 $("#page-title").html(this.game.name);
 
                 //load custom font
-                let font = new FontFace("dp", "url(/public/font/dp.woff2)");
+                let font = new FontFace("dp", "url(./public/font/dp.woff2)");
                 document.fonts.add(font);
                 font.load();
 
@@ -57,7 +57,7 @@ export default class App {
                 for (let po of pkmn_objects) {
                     let pokemon_obj = new Pokemon(po);
                     let div = $(`<div class="pokemon-thumb-container d-flex ${po.is_legendary ? "legendary" : ""} ${po.is_mythic ? "mythic" : ""}" data-pkmn_id=${po.id} data-pkmn_name="${po.name}"></div>`);
-                    let img = $(`<img src="/public/img/pokemon-sprites/gifs/${po.name}.gif" />`);
+                    let img = $(`<img src="./public/img/pokemon-sprites/gifs/${po.name}.gif" />`);
 
 
                     div.append(img);

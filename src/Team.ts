@@ -81,7 +81,7 @@ export default class Team {
         this.slots[index].location = "";
 
         //update DOM
-        let elem = $(`<img class="pokemon-team-sprite" id="pokemon-sprite-${index}" src="/public/img/pokemon-sprites/gifs/${pokemon.name}.gif" />`);
+        let elem = $(`<img class="pokemon-team-sprite" id="pokemon-sprite-${index}" src="./public/img/pokemon-sprites/gifs/${pokemon.name}.gif" />`);
         elem.on("click", e => {
             this.clearSlot(index);
         })

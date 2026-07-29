@@ -88,7 +88,7 @@ export default class Infographic extends InfoOverlay {
                 canvas.getContext("2d")!.drawImage(bg_elem, 0, starting_y, WIDTH, HEIGHT_PER_POKEMON);
                 c();
             }
-            bg_elem.src = `/public/img/sprite/bg-type-${type_id}.png`;
+            bg_elem.src = `./public/img/sprite/bg-type-${type_id}.png`;
         }
         
         async function drawPokeball(starting_y : number, c: Function) {
